@@ -1,24 +1,56 @@
 <script>
     import PromotionService from "../services/promotion.service"
+    import SearchTable from "@/components/SearchTable.vue";
     export default {
         data() {
             return {
                 promotions: [],
+                searchText: "",
+            }
+        },
+        components: {
+        SearchTable
+        },
+        watch: {
+            searchText() {
+                this.activeIndex = -1;
             }
         },
         methods: {
             
-            async getName(id){
-                this.promotions == await PromotionService.get(id);
-            },
+            // async getName(id){
+            //     this.promotions == await PromotionService.get(id);
+            // },
             async DeletePromotion(id){
                await PromotionService.delete(id);
                this.promotions = await PromotionService.getAll();
             },
-            async creatpromotion(){
-                await PromotionService.create();
-                this.promotions = await PromotionService.getAll();
-            }
+            // async creatpromotion(){
+            //     await PromotionService.create();
+            //     this.promotions = await PromotionService.getAll();
+            // }
+        },
+        computed: {
+            promotionStrings() {
+                return this.promotions.map((promotion) => {
+                    const { name } = promotion;
+                    return [name].join("");
+                });
+            },
+            // Trả về các product có chứa thông tin cần tìm kiếm.
+            filteredPromotions() {
+                if (!this.searchText) return this.promotions;
+                return this.promotions.filter((_promotion, index) =>
+                    this.promotionStrings[index].includes(this.searchText)
+                );
+            },
+            activePromotion() {
+                if (this.activeIndex < 0) return null;
+                return this.filteredPromotions[this.activeIndex];
+            },
+            filteredPromotionsCount() {
+                return this.filteredPromotions.length;
+            },
         },
         async created(){
             this.promotions = await PromotionService.getAll();
@@ -31,10 +63,13 @@
 </style>
 <template>
     <div>
-        <router-link :to="{name: 'AddPromotion',}">
-            <button type="button" class="btn btn-primary">Thêm mới</button>
-        </router-link>
-        
+        <div class="row col-12">
+            <router-link :to="{ name: 'AddPromotion', }" class="col-3">
+                <button type="button" class="btn btn-primary">Thêm mới</button>
+            </router-link>
+            <div class="col-5"></div>
+            <SearchTable class="col-4" v-model="searchText" />
+        </div>
         
         <table class="table table-striped mt-2" id="table_id" >
             <thead>
@@ -47,8 +82,8 @@
                     <th scope="col">Hiệu chỉnh</th>
                 </tr>
             </thead>
-            <tbody         
-            v-for="(promotion, index) in promotions"
+            <tbody     v-if="filteredPromotionsCount > 0"    
+            v-for="(promotion, index) in filteredPromotions"
             :key="promotion._id"
             :class="{ active: index === activeIndex }"
             >
@@ -69,6 +104,9 @@
                         <button type="button" class="btn btn-danger" @click="DeletePromotion(promotion._id)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
+            </tbody>
+            <tbody v-else class="text-center">
+                Không tìm thấy khuyến mãi
             </tbody>
         </table>
     </div>

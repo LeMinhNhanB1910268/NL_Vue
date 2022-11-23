@@ -62,7 +62,13 @@ import OrderTable from "../components/OrderTable.vue"
     },
     }
 </script>
+<style scoped>
+    @import "../assets/style.css";
+</style>
 <template>
+        <!-- <router-link :to="{name: 'manager'}">
+            <i class="fa-solid fa-arrow-left back"></i>
+        </router-link> -->
     <div>
         <h2>
             Danh sách đơn hàng

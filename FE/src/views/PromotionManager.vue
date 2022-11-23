@@ -64,8 +64,14 @@ export default {
 };
 
 </script>
+<style scoped>
+    @import "../assets/style.css";
+</style>
 <template>
     <div>
+        <!-- <router-link :to="{name: 'manager'}">
+            <i class="fa-solid fa-arrow-left back"></i>
+        </router-link> -->
         <h2>Danh sách khuyến mãi</h2>
         <div class="row">
             <PromotionTable                 

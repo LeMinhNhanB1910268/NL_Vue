@@ -32,32 +32,47 @@ const routes = [
         props: true
     },
     {
-        path: "/manager",
+        path: "/manager/",
         name: "manager",
         component: () => import("@/views/Admin.vue"),
+        props:true,
         children: [
             {
-                path: "/productmanager",
+                path: "/manager/productmanager",
                 name: "productmanager",
                 component: () => import("@/views/ProductManager.vue"),
             },
             {
-                path: "/accountmanager",
+                path: "/manager/accountmanager",
                 name: "accountmanager",
                 component: () => import("@/views/AccountManager.vue"),
             },
             {
-                path: "/ordertmanager",
+                path: "/manager/ordertmanager",
                 name: "ordermanager",
                 component: () => import("@/views/OrderManager.vue"),
             },
-        ]
-    },
+            {
+                path: "/manager/promotionmanager",
+                name: "promotionmanager",
+                component: () => import("@/views/PromotionManager.vue"),
+            },
+            {
+                path: "/manager/contactnmanager",
+                name: "contactnmanager",
+                component: () => import("@/views/PromotionManager.vue"),
+            },
+            
+
     {
-        path: "/statistical",
+        path: "/manager/statistical",
         name: "statistical",
         component: () => import("@/views/Statistical.vue"),
     },
+        ]
+   
+
+},
     {
         path: "/usermanager",
         name: "usermanager",
@@ -123,5 +138,6 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes,
+    linkActiveClass: 'vue-active-link'
 });
 export default router;

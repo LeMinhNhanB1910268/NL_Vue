@@ -1,5 +1,7 @@
 <script>
 import InputSearch from "@/components/InputSearch.vue";
+import ListSearchVue from "./ListSearch.vue";
+import productService from "../services/product.service";
 export default {
 //     props:{
 //     id:{ type: String, required: true },
@@ -9,7 +11,7 @@ export default {
 //       product:{},
 //     };
 //   },
-//   methods: {
+//   method9s: {
 //     async getbyid(id) {
 //       this.product = await ProductService.get(id)
 //     }
@@ -17,10 +19,61 @@ export default {
 //   created() {
 //     this.getbyid(this.id);
 //   },
-   components: {
-        InputSearch 
+    data(){
+        return{
+            products:[],
+            searchText: "",
+            activeIndex: -1,
+            a: 0
+        }
     },
+    async created(){
+       this.products = await productService.getAll();
+    },
+   components: {
+        InputSearch,
+        ListSearchVue 
+    },
+    watch:{
+        searchText(){
+            this.activeIndex = -1;
+        }
+    },
+    methods:{
+        sreach(){
+            if(this.searchText != ""){
+                 this.a=1;
+            }else  this.a=0;
+        },
+        refresh(){
+        this.searchText = "";}
+    },
+    computed:{
+        productStrings() {
+            return this.products.map((product) => {
+                const {name} = product;
+                return [name].join("");
+            });
+        },
+    // Trả về các product có chứa thông tin cần tìm kiếm.
+        filteredProducts() {
+            if (!this.searchText) return this.products;
+                return this.products.filter((_product, index) =>
+                this.productStrings[index].includes(this.searchText)
+            );
+        },
+        activeProduct() {
+            if (this.activeIndex < 0) return null;
+                return this.filteredProducts[this.activeIndex];
+        },
+        filteredProductsCount() {
+            return this.filteredProducts.length;
+        },
+
+    }
 }
+
+
 </script>
 <template>
     <nav class="navbar navbar-light shadow-sm" style="background-color: #ff6b6b;">
@@ -50,8 +103,8 @@ export default {
                             <a class="dropdown-item" href="#">Quản lý tài khoản</a>
                         </router-link>
                         <a class="dropdown-item" href="#">Quản lý đơn hàng</a>
-                        <router-link :to="{name: 'manager'}">
-                            <a class="dropdown-item" href="/manager">Quản trị</a>
+                        <router-link :to="{name: 'statistical'}">
+                            <a class="dropdown-item" href="#">Quản trị</a>
                         </router-link>
                         <router-link :to="{name: 'statistical'}">
                             <a class="dropdown-item" href="#">Thống kê</a>
@@ -70,8 +123,15 @@ export default {
     <div class="navigation shadow-sm p-3 mb-5 bg-white rounded">
         <div class=" d-flex justify-content-around">
             <a href="/" class="logo d-none d-sm-flex"> <img src="../assets/logo.png" alt="logo" style="height: 100px; width:100px; margin-left: 300%;"> </a>
-            <InputSearch v-model="searchText" class="search" />
+            <InputSearch v-model="searchText" class="search" @keyup="sreach" />
+            <ListSearchVue 
+                v-if="filteredProductsCount>0 && a==1"
+                :products = "filteredProducts"
+                v-model:activeIndex="activeIndex"
+                @click="refresh()"
+            ></ListSearchVue>
         </div>
+        
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <router-link :to="{name: 'home'}">

@@ -15,6 +15,9 @@ export default {
       this.product = await ProductService.get(id)
     }
   },
+  updated() {
+    this.getbyid(this.id);
+  },
   created() {
     this.getbyid(this.id);
   },

@@ -1,4 +1,7 @@
 <template>
+    <!-- <router-link :to="{name: 'manager'}">
+        <i class="fa-solid fa-arrow-left back"></i>
+    </router-link> -->
     <h1>Biểu đồ thống kê</h1>
     <div>
         <h3>Thống kê số sản phẩm trong kho</h3>
@@ -10,6 +13,9 @@
         <canvas id="myChart2"></canvas>
     </div>
 </template>
+<style scoped>
+    @import "../assets/style.css";
+</style>
 <script>
     import Chart from 'chart.js/auto';
     import productService from '../services/product.service'

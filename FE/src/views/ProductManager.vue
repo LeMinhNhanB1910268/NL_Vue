@@ -1,10 +1,10 @@
 <script>
-import ProductList from '../components/ProductList.vue'
+// import ProductList from '../components/ProductList.vue'
 import ProductService from "@/services/product.service";
 import TableProduct from "../components/ProductTable.vue"
 export default {
     components: {
-        ProductList,
+        // ProductList,
         TableProduct
     },
     data() {
@@ -14,12 +14,12 @@ export default {
         };
     },
     computed: {
-        productStrings() {
-            return this.products.map((product) => {
-                const { name, clb, number, namepl } = product;
-                return [name, clb, number, namepl].join("");
-            });
-        },
+        // productStrings() {
+        //     return this.products.map((product) => {
+        //         const { name, clb, number, namepl } = product;
+        //         return [name, clb, number, namepl].join("");
+        //     });
+        // },
     // Trả về các product có chứa thông tin cần tìm kiếm.
         filteredProducts() {
             if (!this.searchText) return this.products;
@@ -48,19 +48,19 @@ export default {
             this.retrieveProducts();
             this.activeIndex = -1;
         },
-        async removeAllProducts() {
-            if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
-                try {
-                    await ProductService.deleteAll();
-                    this.refreshList();
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        },
-        goToAddContact() {
-            this.$router.push({ name: "product.add" });
-        },
+        // async removeAllProducts() {
+        //     if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
+        //         try {
+        //             await ProductService.deleteAll();
+        //             this.refreshList();
+        //         } catch (error) {
+        //             console.log(error);
+        //         }
+        //     }
+        // },
+        // goToAddContact() {
+        //     this.$router.push({ name: "product.add" });
+        // },
     },
     mounted() {
         this.refreshList();
@@ -68,8 +68,14 @@ export default {
 };
 
 </script>
+<style scoped>
+    @import "../assets/style.css";
+</style>
 <template>
     <div>
+        <!-- <router-link :to="{name: 'manager'}">
+            <i class="fa-solid fa-arrow-left back"></i>
+        </router-link> -->
         <h2>Danh sách sản phẩm</h2>
         <div class="row">
             <TableProduct                 

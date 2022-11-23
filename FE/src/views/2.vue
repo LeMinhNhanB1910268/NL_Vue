@@ -20,9 +20,6 @@
         },
         async created(){
             this.products = await ProductService.getAll();
-            $(document).ready(function () {
-                $('#example').DataTable();
-    });
             // this.$alert("Hello Vue Simple Alert.");
         }
     };
@@ -41,9 +38,7 @@
             </tr>
         </thead>
         <tbody         
-            v-for="(product, index) in products"
-            :key="product._id"
-            :class="{ active: index === activeIndex }"
+
             >
                 <tr id="rtable">
                     <td>{{product.name}}</td>

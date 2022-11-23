@@ -66,7 +66,11 @@ export default {
 </script>
 <template>
     <div>
-        <h2>Danh sách tài khoản</h2>
+        <!-- <router-link :to="{name: 'manager'}">
+            <i class="fa-solid fa-arrow-left back"></i>
+        </router-link> -->
+
+        <h2 class="mb-4">Danh sách tài khoản</h2>
         <div class="row">
             <TableAccount                 
                 v-if="filteredAccountsCount > 0"
@@ -76,3 +80,6 @@ export default {
         </div>
     </div>
 </template>
+<style scoped>
+    @import "../assets/style.css";
+</style>
