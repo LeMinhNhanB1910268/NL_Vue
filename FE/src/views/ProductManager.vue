@@ -1,7 +1,7 @@
 <script>
 import ProductList from '../components/ProductList.vue'
 import ProductService from "@/services/product.service";
-import TableProduct from "../components/TableProduct.vue"
+import TableProduct from "../components/ProductTable.vue"
 export default {
     components: {
         ProductList,

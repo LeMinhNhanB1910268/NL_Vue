@@ -1,14 +1,14 @@
 <script>
 
-import AccountService from "@/services/account.service";
-import TableAccount from "../components/AccountTable.vue"
+import PromotionService from "@/services/promotion.service";
+import PromotionTable from "../components/PromotionTable.vue"
 export default {
     components: {
-        TableAccount
+        PromotionTable
     },
     data() {
         return {
-            accounts: [],
+            promotions: [],
             activeIndex: -1,
         };
     },
@@ -20,31 +20,31 @@ export default {
         //     });
         // },
     // Trả về các account có chứa thông tin cần tìm kiếm.
-        filteredAccounts() {
-            if (!this.searchText) return this.accounts;
-                return this.accounts.filter((_account, index) =>
-                    this.accountStrings[index].includes(this.searchText)
+        filteredPromotions() {
+            if (!this.searchText) return this.promotions;
+                return this.promotions.filter((_promotion, index) =>
+                    this.promotionStrings[index].includes(this.searchText)
 
                 );
         },
-        activeAccount() {
+        activePromotion() {
             if (this.activeIndex < 0) return null;
-            return this.filteredAccounts[this.activeIndex];
+            return this.filteredPromotions[this.activeIndex];
         },
-        filteredAccountsCount() {
-            return this.filteredAccounts.length;
+        filteredPromotionsCount() {
+            return this.filteredPromotions.length;
         },
     },
     methods: {
-        async retrieveAccounts() {
+        async retrievePromotions() {
             try {
-                this.accounts = await AccountService.getAll();
+                this.promotions = await PromotionService.getAll();
             } catch (error) {
                 console.log(error);
             }
         },
         refreshList() {
-            this.retrieveAccounts();
+            this.retrievePromotions();
             this.activeIndex = -1;
         },
         // async removeAllProducts() {
@@ -66,13 +66,13 @@ export default {
 </script>
 <template>
     <div>
-        <h2>Danh sách tài khoản</h2>
+        <h2>Danh sách khuyến mãi</h2>
         <div class="row">
-            <TableAccount                 
-                v-if="filteredAccountsCount > 0"
-                :accounts="filteredAccounts"
+            <PromotionTable                 
+                v-if="filteredPromotionsCount > 0"
+                :promotions="filteredPromotions"
                 v-model:activeIndex="activeIndex">
-            </TableAccount>
+            </PromotionTable>
         </div>
     </div>
 </template>

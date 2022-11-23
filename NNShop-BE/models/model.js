@@ -55,10 +55,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    account: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Account"
-    }
 })
 
 const accountSchema = new mongoose.Schema({
@@ -77,13 +73,60 @@ const accountSchema = new mongoose.Schema({
         type: String,
     },
     own: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        name : {
+            type: String,
+            require: true
+        },
+        phone: {
+            type: String,
+        },
+        email: {
+            type: String,
+        },
+        address: {
+            type: String,
+            require: true
+        },
     },
     store: 
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Product"
+        name: {
+            type: String,
+            // require: true
+        },
+        image: {
+            type: String,
+            // require: true
+        },
+        genres: {
+            type: String,
+            // require: true
+        },
+        price: {
+            type: String,
+            // require: true
+        },
+    
+        club: {
+            type: String,
+            // require: true
+        },
+        size: {
+            type: String,
+            // require: true
+        },
+        namePlayer: {
+            type: String,
+        },
+        number: {
+            type: String,
+        },
+        amount: {
+            type: String,
+        },
+        description: {
+            type: String,
+        }
         }
    
     
@@ -93,18 +136,70 @@ const accountSchema = new mongoose.Schema({
 const promotionSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: true,
+        // require: true,
     },
     discount: {
         type: String,
-        require: true,
+        // require: true,
     },
     time: {
         type: String,
-        require: true,
+        // require: true,
     },
     description: {
         type: String,
+    },
+    imageUrl: [
+        {
+            imageUrl1: {
+                type: String
+            },
+        },
+        {
+            imageUrl2: {
+                type: String
+            },
+        }
+
+    ],
+    Products: {
+        name: {
+            type: String,
+            // require: true
+        },
+        image: {
+            type: String,
+            // require: true
+        },
+        genres: {
+            type: String,
+            // require: true
+        },
+        price: {
+            type: String,
+            // require: true
+        },
+    
+        club: {
+            type: String,
+            // require: true
+        },
+        size: {
+            type: String,
+            // require: true
+        },
+        namePlayer: {
+            type: String,
+        },
+        number: {
+            type: String,
+        },
+        amount: {
+            type: String,
+        },
+        description: {
+            type: String,
+        }
     }
 })
 

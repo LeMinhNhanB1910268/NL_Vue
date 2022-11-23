@@ -1,5 +1,4 @@
 <script>
-    import UserService from "../services/user.service"
     import AccountService from "../services/account.service";
     export default {
         data() {
@@ -8,30 +7,19 @@
                 users: null,
             }
         },
-        // props: {
-        //     accounts: { type: Array, default: {} },
-        //     user: {type: Array, default: {}},
-        //     // activeIndex: { type: Number, default: -1 },
-        // },
-        // emits: ["update:activeIndex"],
         methods: {
             
-            async getName(id){
-                this.users == await UserService.get(id);
-            },
+            // async getName(id){
+            //     this.users == await UserService.get(id);
+            // },
             async DeleteAccount(id){
                await AccountService.delete(id);
                this.accounts = await AccountService.getAll();
-            }
-            // async retrieveAccounts() {
-            //     try {
-            //         this.accounts = await AccountService.getAll();
-            //         this.users = this.accounts.own;
-            //     } catch (error) {
-            //         console.log(error);
-            //     }
-            // },
-            // retrieveAccounts(){}
+            },
+            // async creatAccount(){
+            //     await AccountService.addAccount();
+            //     this.accounts = await AccountService.getAll();
+            // }
         },
         async created(){
             this.accounts = await AccountService.getAll();
@@ -44,7 +32,11 @@
 </style>
 <template>
     <div>
-        <button type="button" class="btn btn-primary">Thêm mới</button>
+        <router-link :to="{name: 'AddAccount',}">
+            <button type="button" class="btn btn-primary">Thêm mới</button>
+        </router-link>
+        
+        
         <table class="table table-striped mt-2" id="table_id" >
             <thead>
                 <tr>
@@ -66,7 +58,7 @@
                     <td>{{account.username}}</td>
                     <td>{{account.password}}</td>
                     <td>{{account.root}}</td>
-                    <td >{{account}}</td>
+                    <td >{{account.own.name}}</td>
                     <td>
                         <router-link 
                             :to="{

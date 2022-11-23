@@ -6,6 +6,7 @@ const app = express();
 const userRoute = require("./routes/user");
 const accountRoute = require("./routes/account");
 const productRoute = require("./routes/product");
+const promotionRoute = require("./routes/promotion");
 const parser = require ("body-parser");
 dotenv.config();
 app.use(cors());
@@ -23,7 +24,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/NNShop", ()=>{
 app.use("/api/users", userRoute);
 app.use("/api/accounts", accountRoute);
 app.use("/api/products", productRoute);
-
+app.use("/api/promotions", promotionRoute);
 
 app.listen(3000, () => {
     console.log("Server is running...");

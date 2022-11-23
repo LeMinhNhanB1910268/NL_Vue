@@ -91,7 +91,7 @@
             price: yup.string(),
             image: yup
             .string(),
-            description: yum
+            description: yup
             .string(),
             });
             return {

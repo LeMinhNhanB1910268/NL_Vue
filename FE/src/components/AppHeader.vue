@@ -25,7 +25,7 @@ export default {
 <template>
     <nav class="navbar navbar-light shadow-sm" style="background-color: #ff6b6b;">
         <p class="text-header text-white"><i class="fa-solid fa-envelope p-2"></i>nnshop@gmail.com &emsp;&emsp; <i class="fa-solid fa-phone p-2"></i>hostline: 0123456789</p>
-        <div class="nav">
+        <div class="nav link">
             <li class="nav-item">
                 <router-link :to="{name: 'about'}">
                     <a class="nav-link text-white" href="#">Giới thiệu</a>
@@ -52,6 +52,9 @@ export default {
                         <a class="dropdown-item" href="#">Quản lý đơn hàng</a>
                         <router-link :to="{name: 'manager'}">
                             <a class="dropdown-item" href="/manager">Quản trị</a>
+                        </router-link>
+                        <router-link :to="{name: 'statistical'}">
+                            <a class="dropdown-item" href="#">Thống kê</a>
                         </router-link>
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Đăng xuất</a>
@@ -102,7 +105,8 @@ export default {
     </div>
 </template>
 
-<style>
+<style scoped>
+    @import "../assets/style.css";
     .text-header {
         font-size: 20px;
         margin-left: 300px;

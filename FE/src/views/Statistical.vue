@@ -12,8 +12,32 @@
 </template>
 <script>
     import Chart from 'chart.js/auto';
+    import productService from '../services/product.service'
     export default {
+        data() {
+            return {
+                products: [],
+                tuyen: 0
+            }
+        },
+        methods: {
+            countProduct(){
+               let count;
+                for (let i=0; i<this.products.lenght; i++){
+                    alert("5");
+                    // console.log(this.products[i].genres);
+                    // if (this.products[i].genres == 'tuyen' ) count++;
+                }
+                console.log(count);
+                return count;
+            },
+            async getAllProduct(){
+                this.products = await productService.getAll();
+            }
+        },
         mounted() {
+            this.getAllProduct();
+             this.countProduct();
             const ctx = document.getElementById('myChart1')
             const ctx1 = document.getElementById('myChart2')
             new Chart(ctx, {
@@ -22,7 +46,7 @@
                     labels: ['Áo đội tuyển', 'Áo câu lạc bộ', 'Áo trơn'],
                     datasets: [{
                         label: 'Áo đội tuyển',
-                        data: [65, 59, 80, 81, 56, 55, 40],
+                        data: [65, 59, 80],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(255, 159, 64, 0.2)',
