@@ -24,7 +24,6 @@
         <router-link :to="{ name: 'statistical' }">
         <a-menu-item key="1">
           <template>
-
           </template>
           <span style="font-size: 20px;">Thống kê </span>
         </a-menu-item>
@@ -56,10 +55,6 @@
             <router-link :to="{ name: 'contactnmanager' }">
               <a-menu-item key="7" style="font-size: 17px">Quản lý liên hệ</a-menu-item>
             </router-link>
-
-
-
-
         </a-sub-menu>
       </a-menu>
     </div>
@@ -117,14 +112,9 @@ export default {
 
 <script>
 import { defineComponent, reactive, toRefs } from 'vue';
-import { MailOutlined, CalendarOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import Statistical from './Statistical.vue'
 export default defineComponent({
   components: {
-    MailOutlined,
-    CalendarOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
     Statistical,
   },
   setup() {

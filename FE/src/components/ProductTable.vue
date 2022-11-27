@@ -53,10 +53,10 @@
         }
     };
 </script>
-<style>
+<!-- <style>
 @import 'bootstrap';
 @import 'datatables.net-bs5';
-</style>
+</style> -->
 <template>
     <div class="container">
         <div class="row col-12">
@@ -73,7 +73,7 @@
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Loại sản phẩm</th>
-                    <th scope="col">Loại áo</th>
+                    <th scope="col">Số lượng</th>
                     <th scope="col">Hiệu chỉnh</th>
                 </tr>
             </thead>
@@ -85,9 +85,9 @@
                 <tr id="rtable">
                     <th scope="row"></th>
                     <td>{{product.name}}</td>
-                    <td>{{product.genres}}</td>
                     <td>{{product.price}}</td>
-                    <td >{{product.club}}</td>
+                    <td>{{product.genres}}</td>
+                    <td >{{product.amount}}</td>
                     <td>
                         <router-link 
                             :to="{
@@ -96,7 +96,7 @@
                              }">
                             <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                         </router-link>
-                        <button type="button" class="btn btn-danger" @click="DeleteProduct(product._id)"><i class="fa-solid fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger ml-3" @click="DeleteProduct(product._id)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>

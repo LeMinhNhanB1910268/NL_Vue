@@ -3,12 +3,23 @@ import ProductSport from "@/views/ProductSport.vue";
 import aa from "@/views/2.vue";
 import Discount from "@/views/Discount.vue";
 import About from "@/views/About.vue";
+import login from "../views/Login.vue";
+import register from"../views/Register.vue";
 const routes = [
     {
     path: "/", name: "home", component: ProductSport
     },
     {
     path: "/aa", name: "productsport1", component: aa
+    },
+    {
+        path: "/:name", name: "home-client", component: ProductSport, props: true
+    },
+    {
+        path: "/login", name: "login", component: login
+    },
+    {
+        path: "/register", name: "register", component: register
     },
     {
         path: "/promotion", name: "promotion", component: Discount
@@ -102,13 +113,13 @@ const routes = [
     },
     {
         path: "/editAccount/:id",
-        name: "EditAccount",
+        name: "EditUser",
         component: () => import("@/views/AccountFormEdit.vue"),
         props: true
     },
     {
         path: "/CreatAccount/",
-        name: "AddAccount",
+        name: "AddUser",
         component: () => import("@/views/AccountFormAdd.vue"),
     },
     {
@@ -133,6 +144,7 @@ const routes = [
         name: "AddProduct",
         component: () => import("@/views/ProductFormAdd.vue"),
     }
+
 
 ];
 const router = createRouter({

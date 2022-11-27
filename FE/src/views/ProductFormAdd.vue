@@ -1,87 +1,72 @@
 <template>
-    <div>
-        
-        <Form @submit="AddProduct(product)"     :validation-schema="productFormSchema">
-            <div class="form-group">
-                <label for="name">Tên</label>
-                <Field
-                name="name"
-                type="text"
-                class="form-control"
-                v-model="product.name"
-                />
-                <ErrorMessage name="name" class="error-feedback" />
+    <div class="form shadow-lg">
+        <h3 class="text-center mt-4">Thêm sản phẩm</h3>
+        <form @submit="AddProduct(product)" class="form-item">
+            <div class="form-group" >
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="product.name">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Loại</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="product.genres">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Số lượng</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="product.amount">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Giá bán</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="product.price">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Biên chế</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="product.club">
+                    </div>
+                </div> 
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Hình ảnh</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="product.image">
+                    </div>
+                </div> 
+                <button class="btn btn-primary mt-4">Thêm</button>
+                <router-link :to="{name: 'productmanager'}"> 
+                    <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
+                </router-link>
             </div>
-            <div class="form-group">
-                <label for="genres">Loại</label>
-                <Field
-                name="genres"
-                type="genres"
-                class="form-control"
-                v-model="product.genres"
-                />
-                <ErrorMessage name="genres" class="error-feedback" />
-            </div>
-            <div class="form-group">
-                <label for="price">Giá</label>
-                <Field
-                name="price"
-                type="text"
-                class="form-control"
-                v-model="product.price"
-                />
-                <ErrorMessage name="price" class="error-feedback" />
-            </div>
-            <div class="form-group">
-                <label for="image">Hình ảnh</label>
-                <Field
-                name="image"
-                type="tel"
-                class="form-control"
-                v-model="product.image"
-                />
-                <ErrorMessage name="image" class="error-feedback" />
-            </div>
-            <div class="form-group">
-                <label for="description">Hình ảnh</label>
-                <Field
-                name="description"
-                type="tel"
-                class="form-control"
-                v-model="product.description"
-                />
-                <ErrorMessage name="description" class="error-feedback" />
-            </div>
-            <button>Submit</button>
-        </Form>
+        </form>
     </div>
 </template>
+<style>
+@import "../assets/style.css";
+.form {
+    margin: 0 auto;
+    width: 700px;
+}
+.form-item{
+    padding: 10px;
+}
+</style>
 <script>
 import productService from '../services/product.service';
-import * as yup from "yup";
-import {Form, Field, ErrorMessage } from "vee-validate";
+import userService from '../services/user.service';
     export default {
         data(){
-            const productFormSchema = yup.object().shape({
-                name: yup
-                .string()
-                .required("Tên phải có giá trị.")
-                .min(2, "Tên phải ít nhất 2 ký tự.")
-                .max(50, "Tên có nhiều nhất 50 ký tự."),
-                genres: yup
-                .string(),
-                price: yup.string(),
-            });
             return{
                 product: null,
-            //    id : this.$route.params.i
-                productFormSchema,
+                user: null,
+            //    id : this.$route.params.id
             }
-        },
-        components: {
-            Field,
-            ErrorMessage,
-            Form
         },
         // props:{
         //     id : {type: String, required: true},
@@ -91,12 +76,28 @@ import {Form, Field, ErrorMessage } from "vee-validate";
             //     this.product = await productService.get(id)
             // },
             async AddProduct(data){
-                //  await productService.create({username: this.product.username, own:{ name: this.product.own}})
-                 await productService.create({name: this.product.name, price: this.product.price})
+                 await productService.create(
+                    {
+                        name: this.product.name, 
+                        genres: this.product.genres,
+                        amount: this.product.amount,
+                        price: this.product.price,
+                        club: this.product.club,
+                        image: this.product.image,
+
+                    })
+
+                    // await userService.create(
+                    //     name: this.user.name, 
+                    //     phone: this.user.phone,
+                    //     email: this.user.email,
+                    //     address: this.user.address,
+                    // )
             }
         },
         created(){
             this.product = {};
+            this.user = {};
         }
     }
 

@@ -75,10 +75,9 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Chức năng</th>
-                    <th scope="col">Tên người sở hữu</th>
+                    <th scope="col">Tên Khuyến mãi</th>
+                    <th scope="col">Ưu đãi</th>
+                    <th scope="col">Thời gian</th>
                     <th scope="col">Hiệu chỉnh</th>
                 </tr>
             </thead>
@@ -92,7 +91,6 @@
                     <td>{{promotion.name}}</td>
                     <td>{{promotion.discount}}</td>
                     <td>{{promotion.time}}</td>
-                    <td >{{promotion.description}}</td>
                     <td>
                         <router-link 
                             :to="{
@@ -101,7 +99,7 @@
                              }">
                             <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                         </router-link>
-                        <button type="button" class="btn btn-danger" @click="DeletePromotion(promotion._id)"><i class="fa-solid fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger ml-3" @click="DeletePromotion(promotion._id)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>

@@ -1,34 +1,86 @@
 <template>
-    <div>
-        <form @submit="AddPromotion(promotion)">
-            <div class="form-group row" >
-                <label class="col-sm-2 col-form-label">name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.name">
+    <div class="form shadow-lg">
+        <h3 class="text-center mt-4">Thêm khuyến mãi</h3>
+        <form @submit="AddPromotion(promotion)" class="form-item">
+            <div class="form-group" >
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Tên</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.name">
+                    </div>
                 </div>
-                <label class="col-sm-2 col-form-label">discount</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.discount">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Ưu đãi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.discount">
+                    </div>
                 </div>
-                <label class="col-sm-2 col-form-label">time</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.time">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Thời gian</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.time">
+                    </div>
                 </div>
-                <label class="col-sm-2 col-form-label">description</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.description">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Chi tiết</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.description">
+                    </div>
                 </div>
-                <button>Submit</button>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Hình ảnh</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.imageUrl">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary mt-4">Thêm</button>
+                <router-link :to="{name: 'promotionmanager'}"> 
+                    <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
+                </router-link>
+                <!-- <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="account.own.email">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="account.own.phone">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="account.own.address">
+                    </div>
+                </div>
+                -->
+
+
             </div>
         </form>
     </div>
 </template>
+<style>
+@import "../assets/style.css";
+.form {
+    margin: 0 auto;
+    width: 700px;
+}
+.form-item{
+    padding: 10px;
+}
+</style>
 <script>
 import promotionService from '../services/promotion.service';
+import userService from '../services/user.service';
     export default {
         data(){
             return{
                 promotion: null,
+                user: null,
             //    id : this.$route.params.id
             }
         },
@@ -37,19 +89,29 @@ import promotionService from '../services/promotion.service';
         // },
         methods: {
             // async getAccout(id){
-            //     this.account = await accountService.get(id)
+            //     this.promotion = await promotionService.get(id)
             // },
             async AddPromotion(data){
-                 await promotionService.create({
-                    name: this.account.name, 
-                    discount: this.account.discount, 
-                    time: this.account.time, 
-                    description: this.account.description, 
-                    Products:{ name: this.promotion.Products}})
+                 await promotionService.create(
+                    {
+                        name: this.promotion.name, 
+                        discount: this.promotion.discount,
+                        time: this.promotion.time,
+                        description: this.promotion.description,
+                        imageUrl: this.promotion.imageUrl,
+                    })
+
+                    // await userService.create(
+                    //     name: this.user.name, 
+                    //     phone: this.user.phone,
+                    //     email: this.user.email,
+                    //     address: this.user.address,
+                    // )
             }
         },
         created(){
             this.promotion = {};
+            this.user = {};
         }
     }
 

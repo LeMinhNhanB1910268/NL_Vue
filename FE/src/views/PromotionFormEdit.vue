@@ -1,28 +1,51 @@
 <template>
-    <div v-if="promotion">
-        <form @submit="EditPromotion(id, promotion)">
-            <div class="form-group row" >
-                <label class="col-sm-2 col-form-label">name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control"  v-model="promotion.name">
+    <div v-if="promotion" class="form shadow-lg">
+
+        <form @submit="EditPromotion(id, promotion)" class="form-item">
+            <h3 class="text-center mt-4">Thay đổi thông tin khuyến mãi</h3>
+            <div class="form-group">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Tên</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.name">
+                    </div>
                 </div>
-                <label class="col-sm-2 col-form-label">discount</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.discount">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Ưu đãi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.discount">
+                    </div>
                 </div>
-                <label class="col-sm-2 col-form-label">time</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.time">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Thời gian</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.time">
+                    </div>
                 </div>
-                <label class="col-sm-2 col-form-label">description</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="promotion.description">
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Chi tiết</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.description">
+                    </div>
                 </div>
-                <button>Submit</button>
+
+                <button class="btn btn-primary mt-4">Lưu</button>
+                <router-link :to="{name: 'promotionmanager'}"> 
+                    <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
+                </router-link>
             </div>
         </form>
     </div>
 </template>
+<style>
+.form {
+    margin: 0 auto;
+    width: 700px;
+}
+.form-item{
+    padding: 10px;
+}
+</style>
 <script>
 import promotionService from '../services/promotion.service';
     export default {
@@ -39,7 +62,7 @@ import promotionService from '../services/promotion.service';
             async getPromotion(id){
                 this.promotion = await promotionService.get(id)
             },
-            async EditPromotion(id,promotion){
+            async EditPromotion(id, promotion){
                 this.promotion = await promotionService.update(id,promotion)
             }
         },

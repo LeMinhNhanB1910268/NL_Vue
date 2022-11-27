@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  import { BootstrapVue, IconsPlugin, TablePlugin  } from 'bootstrap-vue'
+
   import 'bootstrap/dist/css/bootstrap.css'
-  import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 
   export default {
     data() {

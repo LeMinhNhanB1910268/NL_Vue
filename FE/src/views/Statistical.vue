@@ -1,8 +1,6 @@
 <template>
-    <!-- <router-link :to="{name: 'manager'}">
-        <i class="fa-solid fa-arrow-left back"></i>
-    </router-link> -->
     <h1>Biểu đồ thống kê</h1>
+    <!-- <button @click="fetchData()">hihi</button> -->
     <div>
         <h3>Thống kê số sản phẩm trong kho</h3>
         <canvas id="myChart1"></canvas>
@@ -23,36 +21,55 @@
         data() {
             return {
                 products: [],
-                tuyen: 0
             }
         },
         methods: {
-            countProduct(){
-               let count;
-                for (let i=0; i<this.products.lenght; i++){
-                    alert("5");
-                    // console.log(this.products[i].genres);
-                    // if (this.products[i].genres == 'tuyen' ) count++;
-                }
-                console.log(count);
-                return count;
-            },
+        //     countProduct(){
+        //        let count;
+        //         for (let i=0; i<this.products.lenght; i++){
+        //             alert("5");
+        //             // console.log(this.products[i].genres);
+        //             // if (this.products[i].genres == 'tuyen' ) count++;
+        //         }
+        //         console.log(count);
+        //         return count;
+        //     },
             async getAllProduct(){
                 this.products = await productService.getAll();
             }
         },
         mounted() {
-            this.getAllProduct();
-             this.countProduct();
-            const ctx = document.getElementById('myChart1')
-            const ctx1 = document.getElementById('myChart2')
+           
+            //  this.countProduct();
+            const ctx = document.getElementById('myChart1');
+            const ctx1 = document.getElementById('myChart2');
+
+            // // const async product = await getAllProduct();;
+            // async function fetchData(){
+            //     const url = 'http://localhost:3000/api/products/';
+            //     const response = await fetch(url);
+            //     const datapo = await response.json();
+            //     console.log(datapo);
+            //     return datapo;
+
+            // }
+            // fetchData().then(datapo => {
+            //     const namepr = datapo.name.map(
+            //         function(index){
+            //             return index.name;
+            //         })
+            //         myChart.config.data.lables = namepr;
+            //         myChart.update();
+            // })
             new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Áo đội tuyển', 'Áo câu lạc bộ', 'Áo trơn'],
+                    // labels: data.map(row => row.year),
                     datasets: [{
                         label: 'Áo đội tuyển',
                         data: [65, 59, 80],
+                        // data: data.map(row => row.count),
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(255, 159, 64, 0.2)',
@@ -82,6 +99,9 @@
                     }]
                 }   
             });
-        }
+        },
+        async created() {
+            this.products = await productService.getAll();
+    }
     }
 </script>

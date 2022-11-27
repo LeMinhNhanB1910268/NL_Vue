@@ -3,7 +3,14 @@
     list-style: none;
     text-decoration: none;
 }
-
+.form {
+    width: 700px;
+    border-radius: 20px;
+    padding: 10px;
+}
+.form-item{
+    padding: 20px;
+}
 .sidebar{
     padding: 10px;
     width: 200px;

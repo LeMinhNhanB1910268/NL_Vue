@@ -55,14 +55,6 @@
         </div>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
-            <button
-            v-if="productLocal._id"
-            type="button"
-            class="ml-2 btn btn-danger"
-            @click="deleteProduct"
-            >
-            Xóa
-            </button>
         </div>
     </Form>
 </template>
@@ -98,14 +90,6 @@
             productLocal: this.product,
             productFormSchema,
             };
-        },
-        methods: {
-            submitProduct() {
-            this.$emit("submit:product", this.productLocal);
-            },
-            deleteProduct() {
-            this.$emit("delete:product", this.productLocal.id);
-            },
         },
     };
 </script>

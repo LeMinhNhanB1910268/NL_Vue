@@ -24,7 +24,8 @@ export default {
             products:[],
             searchText: "",
             activeIndex: -1,
-            a: 0
+            a: 0,
+            admin : localStorage.getItem('admin')
         }
     },
     async created(){
@@ -45,8 +46,18 @@ export default {
                  this.a=1;
             }else  this.a=0;
         },
-        refresh(){
-        this.searchText = "";}
+        refresh() {
+            this.a = 0;
+        },
+        async Logout(){
+        localStorage.clear();
+        // authService.logout()
+        this.$router.push({
+            name: 'home',
+        })
+        this.name =""
+    }
+
     },
     computed:{
         productStrings() {
@@ -70,6 +81,9 @@ export default {
             return this.filteredProducts.length;
         },
 
+    },
+    created(){
+        this.name=this.$route.params.name
     }
 }
 
@@ -88,10 +102,14 @@ export default {
                 <a class="nav-link text-white" href="/contact">Liên hệ</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link text-white" href="/register">Đăng ký</a>
+                <router-link :to="{name:'register'}">
+                    <a class="nav-link text-white" href="/register">Đăng ký</a>
+                </router-link>
             </li>
             <li class="nav-item ">
-                <a class="nav-link text-white" href="#">Đăng nhập</a>
+                <router-link :to="{name:'login'}">
+                        <a class="nav-link text-white">Đăng nhập</a>
+                </router-link>
             </li>
             <li class="nav-item">
                 <div class="dropdown dropleft">
@@ -103,14 +121,14 @@ export default {
                             <a class="dropdown-item" href="#">Quản lý tài khoản</a>
                         </router-link>
                         <a class="dropdown-item" href="#">Quản lý đơn hàng</a>
-                        <router-link :to="{name: 'statistical'}">
-                            <a class="dropdown-item" href="#">Quản trị</a>
+                        <router-link :to="{name: 'statistical'}" >
+                            <a class="dropdown-item" href="#"  v-if="admin === 'false'">Quản trị</a>
                         </router-link>
                         <router-link :to="{name: 'statistical'}">
                             <a class="dropdown-item" href="#">Thống kê</a>
                         </router-link>
                         <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Đăng xuất</a>
+                            <a class="dropdown-item" href="#"  @click="Logout">Đăng xuất</a>
                     </div>
                 </div>
             </li>
@@ -144,12 +162,12 @@ export default {
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link :to="name = 'productclub'">
+                <router-link :to="{name:  'productclub'}">
                     <a class="nav-link" href="#">Áo câu lạc bộ</a>
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link :to="name = 'productteam'">
+                <router-link :to="{name : 'productteam'}">
                     <a class="nav-link" href="#">Áo đội tuyển</a>
                 </router-link>
             </li>

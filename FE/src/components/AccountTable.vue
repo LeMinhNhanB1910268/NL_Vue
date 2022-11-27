@@ -1,10 +1,10 @@
 <script>
-import AccountService from "../services/account.service";
+import UserService from "../services/user.service";
 import SearchTable from "@/components/SearchTable.vue";
 export default {
     data() {
         return {
-            accounts: [],
+            users: [],
             searchText: "",
             activeIndex: -1,
         }
@@ -21,39 +21,39 @@ export default {
         // async getName(id){
         //     this.users == await UserService.get(id);
         // },
-        async DeleteAccount(id) {
-            await AccountService.delete(id);
-            this.accounts = await AccountService.getAll();
+        async DeleteUser(id) {
+            await UserService.delete(id);
+            this.users = await UserService.getAll();
         },
         // async creatAccount(){
-        //     await AccountService.addAccount();
-        //     this.accounts = await AccountService.getAll();
+        //     await UserService.addAccount();
+        //     this.accounts = await UserService.getAll();
         // }
     },
     computed: {
-        accountStrings() {
-            return this.accounts.map((account) => {
-                const { username } = account;
+        userStrings() {
+            return this.users.map((user) => {
+                const { username } = user;
                 return [username].join("");
             });
         },
         // Trả về các product có chứa thông tin cần tìm kiếm.
-        filteredAccounts() {
-            if (!this.searchText) return this.accounts;
-            return this.accounts.filter((_account, index) =>
-                this.accountStrings[index].includes(this.searchText)
+        filteredUsers() {
+            if (!this.searchText) return this.users;
+            return this.users.filter((_user, index) =>
+                this.userStrings[index].includes(this.searchText)
             );
         },
-        activeAccount() {
+        activeUser() {
             if (this.activeIndex < 0) return null;
-            return this.filteredAccounts[this.activeIndex];
+            return this.filteredUsers[this.activeIndex];
         },
-        filteredAccountsCount() {
-            return this.filteredAccounts.length;
+        filteredUsersCount() {
+            return this.filteredUsers.length;
         },
     },
     async created() {
-        this.accounts = await AccountService.getAll();
+        this.users = await UserService.getAll();
     }
 };
 </script>
@@ -64,7 +64,7 @@ export default {
 <template>
     <div class="row col-12">
         <div class="row col-12">
-            <router-link :to="{ name: 'AddAccount', }" class="col-3">
+            <router-link :to="{ name: 'AddUser', }" class="col-3">
                 <button type="button" class="btn btn-primary">Thêm mới</button>
             </router-link>
             <div class="col-5"></div>
@@ -77,28 +77,28 @@ export default {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Password</th>
                     <th scope="col">Chức năng</th>
-                    <th scope="col">Tên người sở hữu</th>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col">Thời gian tạo</th>
                     <th scope="col">Hiệu chỉnh</th>
                 </tr>
             </thead>
-            <tbody v-if="filteredAccountsCount > 0"  v-for="(account, index) in  filteredAccounts" :key="account._id" :class="{ active: index === activeIndex }">
+            <tbody v-if="filteredUsersCount > 0"  v-for="(user, index) in  filteredUsers" :key="user._id" :class="{ active: index === activeIndex }">
                 <tr id="rtable">
                     <th scope="row"></th>
-                    <td>{{ account.username }}</td>
-                    <td>{{ account.password }}</td>
-                    <td>{{ account.root }}</td>
-                    <td>{{ account.own.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.admin }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.createdAt }}</td>
                     <td>
                         <router-link :to="{
-                            name: 'EditAccount',
-                            params: { id: account._id },
+                            name: 'EditUser',
+                            params: { id: user._id },
                         }">
                             <button type="button" class="btn btn-warning"><i
                                     class="fa-solid fa-pen-to-square"></i></button>
                         </router-link>
-                        <button type="button" class="btn btn-danger" @click="DeleteAccount(account._id)"><i
+                        <button type="button" class="btn btn-danger ml-3" @click="DeleteUser(user._id)"><i
                                 class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>

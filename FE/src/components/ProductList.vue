@@ -47,7 +47,8 @@
         @click="updateActiveIndex(index)"
         >
         <div>
-            <img src="https://media.vov.vn/sites/default/files/styles/large/public/2021-08/man_city_0.jpg" class="card-img-top" alt="...">
+            <!-- https://media.vov.vn/sites/default/files/styles/large/public/2021-08/man_city_0.jpg -->
+            <img :src="product.image" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Câu lạc bộ: {{ product.club }}</p>

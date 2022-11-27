@@ -6,6 +6,7 @@ import AppFooter from '@/components/AppFooter.vue';
       AppHeader,
       AppFooter,
     },
+    
   };
 </script>
 <template>
@@ -13,7 +14,7 @@ import AppFooter from '@/components/AppFooter.vue';
     <AppHeader />
     <div class="container mt-3">
       <router-view />
-      <AppFooter />
+      <AppFooter class="fixed-bottom"></AppFooter> 
     </div>
 
   </div>
