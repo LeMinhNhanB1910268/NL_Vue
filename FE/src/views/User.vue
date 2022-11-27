@@ -1,3 +1,21 @@
+<script>
+export default{
+    data(){
+        return{
+
+            admin : localStorage.getItem('admin'),
+            token : localStorage.getItem('token'),
+            name : localStorage.getItem('name'),
+            username : localStorage.getItem('username'),
+            email : localStorage.getItem('email'),
+            phone : localStorage.getItem('phone'),
+            address : localStorage.getItem('address'),
+            _id : localStorage.getItem('_id'),
+        }
+    },
+}
+
+</script>
 <template>
     <div class="container">
         <h1 class="text-center">Thông tin tài khoản</h1>
@@ -6,8 +24,8 @@
                 <img src="../assets/logo.png" alt="" width="150" height="150">
             </div>
             <div class="col-8 head-user">
-                <p><label for="">Tên đăng nhập:  </label> nhanminhle</p>
-                <p><label for="">UID: </label>1234567890</p>
+                <p><label for="">Tên đăng nhập:  </label> {{username}}</p>
+                <p><label for="">UID: </label> {{_id}}</p>
             </div>
             <div class="col-2">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -18,19 +36,19 @@
             <div class="col-12 userdetail">
                 <div class="row">
                     <div class="col-3 d-inline"><label for="">Họ và tên:  </label></div>
-                    <div class="col-9 d-inline"><p> Lê Minh nhân</p></div>
+                    <div class="col-9 d-inline"><p> {{name}}</p></div>
                 </div>
                 <div class="row">
                     <div class="col-3 d-inline"><label for="">Địa chỉ:  </label></div>
-                    <div class="col-9 d-inline"><p> Vĩnh Long</p></div>
+                    <div class="col-9 d-inline"><p>{{address}}</p></div>
                 </div>
                 <div class="row">
                     <div class="col-3 d-inline"><label for="">Số điện thoại:  </label></div>
-                    <div class="col-9 d-inline"><p> 0123456789</p></div>
+                    <div class="col-9 d-inline"><p>{{phone}}</p></div>
                 </div>
                 <div class="row">
                     <div class="col-3 d-inline"><label for="">Email:  </label></div>
-                    <div class="col-9 d-inline">   <p> nhan@gmail.com</p></div>
+                    <div class="col-9 d-inline">   <p> {{email}}</p></div>
                 </div>
 
 
@@ -46,20 +64,13 @@
             <div class="col-12 userdetail">
                 <div class="row">
                     <div class="col-3 d-inline"><label for="">Username:  </label></div>
-                    <div class="col-9 d-inline">      <p> nhanminhle</p></div>
+                    <div class="col-9 d-inline">      <p> {{username}}</p></div>
                 </div>
                 <div class="row">
                     <div class="col-3 d-inline"><label for="">password:  </label></div>
                     <div class="col-9 d-inline">  <p> ********</p></div>
                 </div>
-                <div class="row">
-                    <div class="col-3 d-inline"><label for="">Email:  </label></div>
-                    <div class="col-9 d-inline">               <p> nh**@gmail.com</p></div>
-                </div>
-             
-                
-    
-            </div>
+             </div>
         </div>
     </div>
 </template>

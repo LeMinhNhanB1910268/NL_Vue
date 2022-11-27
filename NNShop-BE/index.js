@@ -9,6 +9,7 @@ const authRoute = require("./routes/auth");
 // const accountRoute = require("./routes/account");
 const productRoute = require("./routes/product");
 const promotionRoute = require("./routes/promotion");
+const cartRoute = require("./routes/cart");
 const parser = require ("body-parser");
 dotenv.config();
 app.use(cors());
@@ -25,7 +26,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/NNShop", ()=>{
 
 // routes
 app.use("/api/users", userRoute);
-// app.use("/api/accounts", accountRoute);
+app.use("/api/carts", cartRoute);
 app.use("/api/products", productRoute);
 app.use("/api/promotions", promotionRoute);
 app.use("/api/auth", authRoute);

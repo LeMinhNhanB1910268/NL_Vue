@@ -13,7 +13,7 @@ const routes = [
     path: "/aa", name: "productsport1", component: aa
     },
     {
-        path: "/:name", name: "home-client", component: ProductSport, props: true
+        path: "/:name", name: "home-client", component: ProductSport, props: true,
     },
     {
         path: "/login", name: "login", component: login

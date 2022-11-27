@@ -1,82 +1,56 @@
 <template>
     <div class="form shadow-lg">
         <h3 class="text-center mt-4">Thêm tài khoản</h3>
-        <form @submit="AddAccount(account)" class="form-item">
+        <form @submit="AddUser(user)" class="form-item">
             <div class="form-group" >
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.username">
+                        <input type="text" class="form-control"  v-model="user.username">
                     </div>
                 </div>
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.password">
+                        <input type="text" class="form-control"  v-model="user.password">
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Chức năng</label>
+                    <label class="col-sm-2 col-form-label">Chức vụ</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.root">
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Họ và tên</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="own.name">
+                        <input type="text" class="form-control"  v-model="user.admin">
                     </div>
                 </div>
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Họ và tên</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="own.phone">
+                        <input type="text" class="form-control"  v-model="user.name">
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Họ và tên</label>
+                    <label class="col-sm-2 col-form-label">SĐT</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="own.email">
+                        <input type="text" class="form-control"  v-model="user.phone">
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Họ và tên</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="own.address">
-                    </div>
-                </div>
-
-                <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Avatar</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.avatar">
-                    </div>
-                </div> 
-                
-
-                <button class="btn btn-primary mt-4">Thêm</button>
-                <router-link :to="{name: 'accountmanager'}"> 
-                    <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
-                </router-link>
-                <!-- <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.own.email">
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Số điện thoại</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.own.phone">
+                        <input type="text" class="form-control"  v-model="user.email">
                     </div>
                 </div>
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Địa chỉ</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="account.own.address">
+                        <input type="text" class="form-control"  v-model="user.address">
                     </div>
                 </div>
-                -->
+
+                
+                <button class="btn btn-primary mt-4">Thêm</button>
+                <router-link :to="{name: 'accountmanager'}"> 
+                    <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
+                </router-link>
 
 
             </div>
@@ -99,9 +73,9 @@ import userService from '../services/user.service';
     export default {
         data(){
             return{
-                account: null,
+
                 user: null,
-                own:null
+
             //    id : this.$route.params.id
             }
         },
@@ -112,27 +86,22 @@ import userService from '../services/user.service';
             // async getAccout(id){
             //     this.account = await accountService.get(id)
             // },
-            async AddAccount(data){
-                 await accountService.create(
+            async AddUser(data){
+                 await userService.create(
                     {
-                        username: this.account.username, 
-                        password: this.account.password,
-                        root: this.account.root,
-                        avatar: this.account.avatar,
-                        own: this.own
+                        username: this.user.username, 
+                        password: this.user.password,
+                         phone: this.user.phone,
+                         address: this.user.address,
+                         name: this.user.password,
+                         email: this.user.email,
+                         admin: this.user.admin
                     })
-                    await userService.create({
-                        name: this.own.name, 
-                        phone: this.own.phone,
-                        email: this.own.email,
-                        address: this.own.address,
-                    })
+     
             }
         },
         created(){
-            this.account = {};
             this.user = {};
-            this.own = {};
         }
     }
 

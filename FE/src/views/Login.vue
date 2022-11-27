@@ -43,21 +43,27 @@ export default{
             user: {},
         }
     },
-   methods:{
-    async Login(evt){
-        evt.preventDefault()
-       await authService.login(this.user)
-       .then(response => {
-        console.log(response)
-        localStorage.setItem('token',response.accessToken)
-        localStorage.setItem('admin',response.admin)
-        this.$router.push({
-        name: 'home-client',
-        params: {name: response.name}
-        })
-       })
-      
-    }
-   }
+    methods: {
+        async Login(evt) {
+            evt.preventDefault()
+            await authService.login(this.user)
+                .then(response => {
+
+                    console.log(response)
+                    localStorage.setItem('token', response.accessToken)
+                    localStorage.setItem('admin', response.admin)
+                    localStorage.setItem('name', response.name)
+                    localStorage.setItem('username', response.username)
+                    localStorage.setItem('email', response.email)
+                    localStorage.setItem('phone', response.phone)
+                    localStorage.setItem('address', response.address)
+                    localStorage.setItem('_id', response._id)
+                    this.$router.push({
+                        name: 'home-client',
+                        params: { name: response.name },
+                    })
+                })
+        }
+    },
 }
 </script>

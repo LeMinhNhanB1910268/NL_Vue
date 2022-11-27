@@ -25,7 +25,9 @@ export default {
             searchText: "",
             activeIndex: -1,
             a: 0,
-            admin : localStorage.getItem('admin')
+            admin : localStorage.getItem('admin'),
+            token : localStorage.getItem('token'),
+            name : localStorage.getItem('name'),
         }
     },
     async created(){
@@ -56,6 +58,8 @@ export default {
             name: 'home',
         })
         this.name =""
+        this.$router.go()
+
     }
 
     },
@@ -84,6 +88,9 @@ export default {
     },
     created(){
         this.name=this.$route.params.name
+    },
+    updated(){
+        this.$router.go()
     }
 }
 
@@ -91,7 +98,7 @@ export default {
 </script>
 <template>
     <nav class="navbar navbar-light shadow-sm" style="background-color: #ff6b6b;">
-        <p class="text-header text-white"><i class="fa-solid fa-envelope p-2"></i>nnshop@gmail.com &emsp;&emsp; <i class="fa-solid fa-phone p-2"></i>hostline: 0123456789</p>
+        <p class="text-header text-white"><i class="fa-solid fa-envelope p-2"></i>nnshop@gmail.com&emsp;&emsp; <i class="fa-solid fa-phone p-2"></i>hostline: 0123456789</p>
         <div class="nav link">
             <li class="nav-item">
                 <router-link :to="{name: 'about'}">
@@ -108,7 +115,7 @@ export default {
             </li>
             <li class="nav-item ">
                 <router-link :to="{name:'login'}">
-                        <a class="nav-link text-white">Đăng nhập</a>
+                        <a class="nav-link text-white" v-if="!token">Đăng nhập</a>
                 </router-link>
             </li>
             <li class="nav-item">
@@ -117,12 +124,13 @@ export default {
                         <i class="fa-solid fa-user"></i>
                     </button>
                     <div class="dropdown-menu">
+
                         <router-link :to="{name: 'usermanager'}">
-                            <a class="dropdown-item" href="#">Quản lý tài khoản</a>
+                            <a class="dropdown-item" href="#" >Quarn lys</a>
                         </router-link>
                         <a class="dropdown-item" href="#">Quản lý đơn hàng</a>
                         <router-link :to="{name: 'statistical'}" >
-                            <a class="dropdown-item" href="#"  v-if="admin === 'false'">Quản trị</a>
+                            <a class="dropdown-item" href="#"  v-if="admin === 'Admin'">Quản trị</a>
                         </router-link>
                         <router-link :to="{name: 'statistical'}">
                             <a class="dropdown-item" href="#">Thống kê</a>

@@ -6,14 +6,17 @@ import AppFooter from '@/components/AppFooter.vue';
       AppHeader,
       AppFooter,
     },
-    
+  //   create(){
+  //   this.$router.go()
+  // }
   };
+
 </script>
 <template>
     <div id="app" >
     <AppHeader />
     <div class="container mt-3">
-      <router-view />
+      <router-view :key="$route.fullPath" />
       <AppFooter class="fixed-bottom"></AppFooter> 
     </div>
 

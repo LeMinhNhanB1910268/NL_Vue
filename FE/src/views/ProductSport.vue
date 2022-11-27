@@ -126,6 +126,9 @@ export default {
     mounted() {
         this.refreshList();
     },
+    updated(){
+        
+    }
 };
 </script>
 <style scoped>
