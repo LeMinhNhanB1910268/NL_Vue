@@ -1,4 +1,6 @@
+
 <template>
+    <AppHeader v-if="this.$router.params === name"/>
     <div class="row">
         <div class="container">
             <Slideshow />
@@ -53,6 +55,7 @@ import TeamProductListVue from "../components/TeamProductList.vue";
 import ClubProductListVue from "../components/ClubProductList.vue";
 import Slideshow from "@/components/Slideshow.vue";
 import ProductService from "@/services/product.service";
+import AppHeader from '@/components/AppHeader.vue';
 export default {
     components: {
         ProductCard,
@@ -61,13 +64,18 @@ export default {
         Slideshow,
         TeamProductListVue,
         ClubProductListVue,
+        AppHeader
     },
     data() {
         return {
             products: [],
             activeIndex: -1,
             searchText: "",
+            name : localStorage.getItem('name'),
         };
+    },
+    props: {
+    ten: { type: String, require: true },
     },
     watch: {
         searchText() {
@@ -109,26 +117,13 @@ export default {
             this.retrieveProducts();
             this.activeIndex = -1;
         },
-        async removeAllProducts() {
-            if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
-                try {
-                    await ProductService.deleteAll();
-                    this.refreshList();
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        },
-        goToAddContact() {
-            this.$router.push({ name: "product.add" });
-        },
     },
     mounted() {
         this.refreshList();
     },
-    updated(){
-        
-    }
+    // updated(){
+
+    // }
 };
 </script>
 <style scoped>

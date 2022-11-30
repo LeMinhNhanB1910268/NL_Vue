@@ -2,6 +2,11 @@
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
   export default {
+    data(){
+      return {
+        name : localStorage.getItem('name'),
+      }
+    },
     components: {
       AppHeader,
       AppFooter,
@@ -9,17 +14,25 @@ import AppFooter from '@/components/AppFooter.vue';
   //   create(){
   //   this.$router.go()
   // }
+  props: {
+    ten: { type: String, default: 1 },
+  },
+  methods: {
+    hihi(){
+      console.log(this.$route.params)
+      console.log(this.name)
+    }
+  }
   };
-
 </script>
 <template>
     <div id="app" >
-    <AppHeader />
-    <div class="container mt-3">
+      <!-- <button @click="hihi">sd</button> -->
+    <AppHeader id="reload"/>
+    <div class="mid">
       <router-view :key="$route.fullPath" />
-      <AppFooter class="fixed-bottom"></AppFooter> 
     </div>
-
+    <AppFooter class="bottom"></AppFooter> 
   </div>
 </template>
 
@@ -28,4 +41,5 @@ import AppFooter from '@/components/AppFooter.vue';
     max-width: 400px;
     margin: auto;
   }
+  @import "assets/style.css";
 </style>

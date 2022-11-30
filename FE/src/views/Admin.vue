@@ -17,24 +17,27 @@
 
 
 <template>
-  <div class="row"  >
-    <div class="col-3" style="list-style: none; text-decoration: none">
+  <div class="container">
+    <div class="row"  >
+    <div class="col-3 link" style="list-style: none; text-decoration: none" >
       <a-menu v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" style="width: 256px" mode="vertical"
         @click="handleClick">
-        <router-link :to="{ name: 'statistical' }">
+        <router-link :to="{ name: 'statistical' }" >
         <a-menu-item key="1">
           <template>
           </template>
           <span style="font-size: 20px;">Thống kê </span>
         </a-menu-item>
         </router-link>
+        <router-link :to="{ name: 'OrderCheck' }">
         <a-menu-item key="2" >
           <template>
 
           </template>
           <span style="font-size: 20px">Kiểm tra đơn hàng </span>
         </a-menu-item>
-        <a-sub-menu key="sub1">
+      </router-link>
+        <a-sub-menu key="sub1" class="shadow-lg">
           <template #icon>
             <AppstoreOutlined />
           </template>
@@ -62,53 +65,14 @@
       <RouterView> </RouterView>
     </div>
   </div>
+  </div>
  
 </template>
-    <!-- <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <button class="nav-link active" id="v-pills-home-tab" data-toggle="pill" data-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Quản lý đơn hàng</button>
-      <button class="nav-link" id="v-pills-profile-tab" data-toggle="pill" data-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Quản lý người dùng</button>
-      <button class="nav-link" id="v-pills-messages-tab" data-toggle="pill" data-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Quản lý sản phẩm</button>
-      <button class="nav-link" id="v-pills-settings-tab" data-toggle="pill" data-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Quản lý khuyến mãi</button>
-    </div> -->
-  <!-- </div>
-  <div class="col-9">
-    <RouterView> </RouterView>
-    <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><OrderManagerVue /></div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><AccountManagerVue /></div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><ProductManagerVue /></div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"><PromotionManagerVue /></div>
-    </div> -->
-    <!-- <div>
-      <AccountManagerVue />
-    </div> -->
-<!-- 
-  </div>
-</div> -->
-<!-- </template> --> -->
+
 <style scoped>
     @import "../assets/style.css";
 </style>
-<!-- <script>
 
-// import AccountManagerVue from './AccountManager.vue'
-// import ProductManagerVue from './ProductManager.vue'
-// import OrderManagerVue from './OrderManager.vue'
-import Statistical from './Statistical.vue'
-// import PromotionManagerVue from './PromotionManager.vue'
-export default {
-    components: {
-        // AccountManagerVue,
-        // ProductManagerVue,
-        Statistical,
-        // PromotionManagerVue,
-        // OrderManagerVue
-    }
-    // ,props: {
-    //   namepage: {type: String, require: true}
-    // }
-}
-</script> -->
 
 <script>
 import { defineComponent, reactive, toRefs } from 'vue';

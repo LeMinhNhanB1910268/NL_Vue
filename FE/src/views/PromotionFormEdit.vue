@@ -17,9 +17,15 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label">Thời gian</label>
+                    <label class="col-sm-2 col-form-label">Thời gian bắt đầu</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="promotion.time">
+                        <input type="text" class="form-control"  v-model="promotion.start">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Thời gian kết thúc</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="promotion.end">
                     </div>
                 </div>
                 <div class="row mt-4">

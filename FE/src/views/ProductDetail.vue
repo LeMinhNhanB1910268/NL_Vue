@@ -8,6 +8,7 @@ export default {
   data () {
     return {
       product:{},
+      _id : localStorage.getItem('_id'),
     };
   },
   methods: {
@@ -42,14 +43,18 @@ export default {
     <div class="container">
         <div class="row" v-if="product">
           <div class="col-sm-4">
-            <img src="https://media.vov.vn/sites/default/files/styles/large/public/2021-08/man_city_0.jpg" class="card-img-top" alt="...">
+            <img :src="product.imageUrl" class="card-img-top" alt="...">
           </div>
           <div class="col-sm-8">
             <div class="ml-5">
               <p class="title-name">{{product.name}}</p>
+              <p class="content">Biên chế: {{product.club}}</p>
               <p class="content">Giá bán: {{product.price}}</p>
               <p class="content">Số lượng còn: {{product.amount}}</p>
-              <button type="button" class="btn btn-danger shopping">Đặt hàng</button>
+              <!-- <router-link :to="{ name: 'AddOrder', params: {name: product.name}}"> -->
+                <a :href="'../CreatOrder/'+product.name+'/'+product.price">    <button type="button" class="btn btn-danger shopping">Đặt hàng</button></a>
+              <!-- </router-link> -->
+
             </div>
           </div>
         </div>

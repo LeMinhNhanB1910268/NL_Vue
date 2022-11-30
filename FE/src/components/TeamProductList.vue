@@ -8,6 +8,18 @@
     methods: {
         updateActiveIndex(index) {
             this.$emit("update:activeIndex", index);
+        },
+        async AddtoCart(id){
+            const product = await ProductService.get(id);
+
+            await AccountService.create({
+                userId: this._id,
+                productId: product._id,
+                productName: product.name,
+                price: product.price,
+                state: ''
+            }        
+        )
         }
     },
 };
@@ -32,7 +44,7 @@
         @click="updateActiveIndex(index)"
         >
         <div class="card d-inline">
-            <img src="https://media.vov.vn/sites/default/files/styles/large/public/2021-08/man_city_0.jpg" class="card-img-top" alt="...">
+            <img :src="product.imageUrl" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Câu lạc bộ: {{ product.club }}</p>
@@ -41,7 +53,7 @@
                 <router-link :to="{name: 'productdetail', params: {id: product._id}}">
                     <button class="show-detail text-white">Xem chi tiết sản phẩm</button>
                 </router-link>
-                <i class="fa-solid fa-cart-plus shopping-card"></i>
+                <i class="fa-solid fa-cart-plus shopping-card" type="button" @click="AddtoCart(product._id)"></i>
             </div>
         </div>
     </div>

@@ -36,7 +36,8 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Hình ảnh</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="product.image">
+                        <input type="text" class="form-control" v-model="product.imageUrl" >
+
                     </div>
                 </div> 
                 <button class="btn btn-primary mt-4">Thêm</button>
@@ -83,7 +84,7 @@ import userService from '../services/user.service';
                         amount: this.product.amount,
                         price: this.product.price,
                         club: this.product.club,
-                        image: this.product.image,
+                        imageUrl: this.product.imageUrl,
 
                     })
 

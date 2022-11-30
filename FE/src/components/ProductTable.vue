@@ -104,20 +104,5 @@
                 Không tìm thấy khuyến mãi
             </tbody>
         </table>
-            <!-- <DataTable
-            class="table table-hover table-striped"
-            width="100%"
-            >
-            <thead>
-                <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-                </tr>
-            </thead>
-        </DataTable> -->
     </div>
 </template>

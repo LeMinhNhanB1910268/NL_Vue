@@ -18,17 +18,10 @@
         },
         methods: {
             
-            // async getName(id){
-            //     this.promotions == await PromotionService.get(id);
-            // },
             async DeletePromotion(id){
                await PromotionService.delete(id);
                this.promotions = await PromotionService.getAll();
             },
-            // async creatpromotion(){
-            //     await PromotionService.create();
-            //     this.promotions = await PromotionService.getAll();
-            // }
         },
         computed: {
             promotionStrings() {
@@ -77,7 +70,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Tên Khuyến mãi</th>
                     <th scope="col">Ưu đãi</th>
-                    <th scope="col">Thời gian</th>
+                    <th scope="col">Thời gian bắt đầu</th>
+                    <th scope="col">Thời gian kết thúc</th>
                     <th scope="col">Hiệu chỉnh</th>
                 </tr>
             </thead>
@@ -90,7 +84,8 @@
                     <th scope="row"></th>
                     <td>{{promotion.name}}</td>
                     <td>{{promotion.discount}}</td>
-                    <td>{{promotion.time}}</td>
+                    <td>{{promotion.start}}</td>
+                    <td>{{promotion.end}}</td>
                     <td>
                         <router-link 
                             :to="{

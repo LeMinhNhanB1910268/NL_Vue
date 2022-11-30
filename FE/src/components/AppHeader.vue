@@ -28,6 +28,7 @@ export default {
             admin : localStorage.getItem('admin'),
             token : localStorage.getItem('token'),
             name : localStorage.getItem('name'),
+            username : localStorage.getItem('username'),
         }
     },
     async created(){
@@ -57,10 +58,14 @@ export default {
         this.$router.push({
             name: 'home',
         })
-        this.name =""
-        this.$router.go()
+        this.$router.go(0)
 
-    }
+    },
+        reload(){
+
+        }
+
+
 
     },
     computed:{
@@ -88,10 +93,9 @@ export default {
     },
     created(){
         this.name=this.$route.params.name
+
     },
-    updated(){
-        this.$router.go()
-    }
+
 }
 
 
@@ -102,11 +106,13 @@ export default {
         <div class="nav link">
             <li class="nav-item">
                 <router-link :to="{name: 'about'}">
-                    <a class="nav-link text-white" href="#">Giới thiệu</a>
+                    <a class="nav-link text-white" href="#">Giới thiệu </a>
                 </router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/contact">Liên hệ</a>
+                <router-link :to="{name: 'contact'}">
+                    <a class="nav-link text-white" href="#">Liên hệ </a>
+                </router-link>
             </li>
             <li class="nav-item ">
                 <router-link :to="{name:'register'}">
@@ -126,14 +132,20 @@ export default {
                     <div class="dropdown-menu">
 
                         <router-link :to="{name: 'usermanager'}">
-                            <a class="dropdown-item" href="#" >Quarn lys</a>
+                            <a class="dropdown-item" href="#">Xin chào: <p>{{username}}</p></a>
                         </router-link>
-                        <a class="dropdown-item" href="#">Quản lý đơn hàng</a>
+                        <router-link :to="{name: 'CartUser'}">
+                            <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
+                        </router-link>
+                        <router-link :to="{name: 'contactUser'}">
+                            <a class="dropdown-item" href="#">Liên hệ của tôi</a>
+                        </router-link>
+
                         <router-link :to="{name: 'statistical'}" >
                             <a class="dropdown-item" href="#"  v-if="admin === 'Admin'">Quản trị</a>
                         </router-link>
-                        <router-link :to="{name: 'statistical'}">
-                            <a class="dropdown-item" href="#">Thống kê</a>
+                        <router-link :to="{name: 'statisticalview'}">
+                            <a class="dropdown-item" href="#" v-if="admin === 'Admin'">Thống kê</a>
                         </router-link>
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"  @click="Logout">Đăng xuất</a>
@@ -158,9 +170,9 @@ export default {
             ></ListSearchVue>
         </div>
         
-        <ul class="nav justify-content-center">
+        <ul class="nav justify-content-center link">
             <li class="nav-item">
-                <router-link :to="{name: 'home'}">
+                <router-link  :to="{name: 'home'}">
                     <a class="nav-link" href="#">Trang chủ</a>
                 </router-link>
             </li>
@@ -185,7 +197,10 @@ export default {
                 </router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping pl-2"></i> Giỏ hàng</a>
+                <router-link :to="{name: 'CartUser'}">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping pl-2"></i> Giỏ hàng</a>
+                </router-link>
+
             </li>
         </ul>
     </div>

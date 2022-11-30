@@ -1,79 +1,64 @@
 <script>
-import AccountService from "@/services/account.service";
+import CartService from "@/services/cart.service";
 import OrderTable from "../components/OrderTable.vue"
-    export default {
-        components: {
-            OrderTable
-        },
-        data() {
+export default {
+    components: {
+        OrderTable
+    },
+    data() {
         return {
-            accounts: [],
+            carts: [],
             activeIndex: -1,
         };
     },
     computed: {
-        accountStrings() {
-            return this.accounts.map((account) => {
-                const { name, clb, number, namepl } = account;
-                return [name, clb, number, namepl].join("");
-            });
-        },
-    // Trả về các account có chứa thông tin cần tìm kiếm.
-        filteredAccounts() {
-            if (!this.searchText) return this.accounts;
-                return this.accounts.filter((_account, index) =>
-                    this.accountStrings[index].includes(this.searchText)
+    // Trả về các cart có chứa thông tin cần tìm kiếm.
+        filteredcarts() {
+            if (!this.searchText) return this.carts;
+                return this.carts.filter((_cart, index) =>
+                    this.cartStrings[index].includes(this.searchText)
 
                 );
         },
-        activeAccount() {
+        activecart() {
             if (this.activeIndex < 0) return null;
-            return this.filteredAccounts[this.activeIndex];
+            return this.filteredcarts[this.activeIndex];
         },
-        filteredAccountsCount() {
-            return this.filteredAccounts.length;
+        filteredcartsCount() {
+            return this.filteredcarts.length;
         },
     },
     methods: {
-        async retrieveAccounts() {
+        async retrievecarts() {
             try {
-                this.accounts = await AccountService.getAll();
+                this.carts = await CartService.getAll();
             } catch (error) {
                 console.log(error);
             }
         },
         refreshList() {
-            this.retrieveAccounts();
+            this.retrievecarts();
             this.activeIndex = -1;
-        },
-        async removeAllProducts() {
-            if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
-                try {
-                    await AccountService.deleteAll();
-                    this.refreshList();
-                } catch (error) {
-                    console.log(error);
-                }
-            }
         },
     },
     mounted() {
         this.refreshList();
     },
-    }
+};
+
 </script>
+<template>
+    <div>
+        <h2 class="mb-4">Danh sách đơn hàng</h2>
+        <div class="row">
+            <OrderTable                 
+                v-if="filteredcartsCount > 0"
+                :carts="filteredcarts"
+                v-model:activeIndex="activeIndex">
+            </OrderTable>
+        </div>
+    </div>
+</template>
 <style scoped>
     @import "../assets/style.css";
 </style>
-<template>
-        <!-- <router-link :to="{name: 'manager'}">
-            <i class="fa-solid fa-arrow-left back"></i>
-        </router-link> -->
-    <div>
-        <h2>
-            Danh sách đơn hàng
-            <OrderTable></OrderTable>
-
-        </h2>
-    </div>
-</template>

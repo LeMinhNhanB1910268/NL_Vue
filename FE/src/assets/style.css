@@ -1,7 +1,8 @@
 
-.link li a {
+.link li a,router-link,a-menu  {
     list-style: none;
     text-decoration: none;
+
 }
 .form {
     width: 700px;
@@ -26,4 +27,31 @@
     font-size: 40px;
     margin-bottom: 10px;
     color: black;
+}
+.top-cart {
+    border: 1px solid yellow;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.top-cart i{
+    color: red;
+    padding: 5px;
+    font-size: 20px;
+}
+.cart-header {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.cart {
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mid {
+    min-height: 670px;
 }

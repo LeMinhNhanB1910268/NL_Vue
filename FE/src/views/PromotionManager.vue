@@ -47,16 +47,7 @@ export default {
             this.retrievePromotions();
             this.activeIndex = -1;
         },
-        // async removeAllProducts() {
-        //     if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
-        //         try {
-        //             await AccountService.deleteAll();
-        //             this.refreshList();
-        //         } catch (error) {
-        //             console.log(error);
-        //         }
-        //     }
-        // },
+
     },
     mounted() {
         this.refreshList();
@@ -69,9 +60,6 @@ export default {
 </style>
 <template>
     <div>
-        <!-- <router-link :to="{name: 'manager'}">
-            <i class="fa-solid fa-arrow-left back"></i>
-        </router-link> -->
         <h2>Danh sách khuyến mãi</h2>
         <div class="row">
             <PromotionTable                 

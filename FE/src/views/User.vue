@@ -2,7 +2,7 @@
 export default{
     data(){
         return{
-
+            user: {},
             admin : localStorage.getItem('admin'),
             token : localStorage.getItem('token'),
             name : localStorage.getItem('name'),
@@ -28,7 +28,12 @@ export default{
                 <p><label for="">UID: </label> {{_id}}</p>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                <router-link  :to="{
+                            name: 'EditUser',
+                            params: { id: _id },
+                        }">
+                    <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                </router-link>
             </div>
         </div>
         <div class="mt-4 space"><h2>Thông tin cá nhân</h2></div>
@@ -50,13 +55,6 @@ export default{
                     <div class="col-3 d-inline"><label for="">Email:  </label></div>
                     <div class="col-9 d-inline">   <p> {{email}}</p></div>
                 </div>
-
-
-
-                
-                
-                
-             
             </div>
         </div>
         <div class="mt-4 space"><h2>Thông tin tài khoản</h2></div>

@@ -43,8 +43,8 @@ export default {
     computed: {
         productStrings() {
             return this.products.map((product) => {
-                const { name, clb, number, namepl } = product;
-                return [name, clb, number, namepl].join("");
+                const { name, clb } = product;
+                return [name, clb].join("");
             });
         },
     // Trả về các product có chứa thông tin cần tìm kiếm.
@@ -74,19 +74,6 @@ export default {
         refreshList() {
             this.retrieveProducts();
             this.activeIndex = -1;
-        },
-        async removeAllProducts() {
-            if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
-                try {
-                    await ProductService.deleteAll();
-                    this.refreshList();
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        },
-        goToAddContact() {
-            this.$router.push({ name: "product.add" });
         },
     },
     mounted() {

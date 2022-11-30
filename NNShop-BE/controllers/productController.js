@@ -1,4 +1,6 @@
 const {Product} = require("../models/model");
+// var multer = require('multer');
+// var upload = multer({ dest: 'uploads/' });
 
 const productController = {
     addProduct: async(req, res) => {

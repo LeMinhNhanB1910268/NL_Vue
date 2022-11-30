@@ -1,13 +1,15 @@
 <script>
-    import AccountS from '../services/account.service'
+    import AccountService from '../services/cart.service'
+    import ProductService from "@/services/product.service";
     export default {
         data(){
             return{
-                cart:[]
+                product:[],
+                _id : localStorage.getItem('_id'),
             }   
         },
     props: {
-        products: { type: Array, default: {} },
+        products: { type: Array, require: true },
         activeIndex: { type: Number, default: -1 },
     },
     emits: ["update:activeIndex"],
@@ -15,13 +17,17 @@
         updateActiveIndex(index) {
             this.$emit("update:activeIndex", index);
         },
-        AddtoCart(id){
-            this.cart.push(id)
-            AccountS.update('6363d733c2386820d42303d3',
-            {"username": "minhnhan",
-            "password": "nhan123",
-            "root": "true",
-            "avatar": "fsdfs","store": this.cart}
+        
+        async AddtoCart(id){
+            const product = await ProductService.get(id);
+
+            await AccountService.create({
+                userId: this._id,
+                productId: product._id,
+                productName: product.name,
+                price: product.price,
+                state: ''
+            }        
         )
         }
     },
@@ -47,8 +53,7 @@
         @click="updateActiveIndex(index)"
         >
         <div>
-            <!-- https://media.vov.vn/sites/default/files/styles/large/public/2021-08/man_city_0.jpg -->
-            <img :src="product.image" class="card-img-top" alt="...">
+            <img :src="product.imageUrl" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Câu lạc bộ: {{ product.club }}</p>
@@ -57,7 +62,7 @@
                 <router-link :to="{name: 'productdetail', params: {id: product._id}}">
                     <button class="show-detail text-white">Xem chi tiết sản phẩm</button>
                 </router-link>
-                <i class="fa-solid fa-cart-plus shopping-card" @click="AddtoCart(product._id)"></i>
+                <i class="fa-solid fa-cart-plus shopping-card" type="button" @click="AddtoCart(product._id)"></i>
             </div>
         </div>
     </div>

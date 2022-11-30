@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import ProductSport from "@/views/ProductSport.vue";
-import aa from "@/views/2.vue";
-import Discount from "@/views/Discount.vue";
+import Promotion from "@/views/Promotion.vue";
 import About from "@/views/About.vue";
 import login from "../views/Login.vue";
 import register from"../views/Register.vue";
@@ -10,10 +9,7 @@ const routes = [
     path: "/", name: "home", component: ProductSport
     },
     {
-    path: "/aa", name: "productsport1", component: aa
-    },
-    {
-        path: "/:name", name: "home-client", component: ProductSport, props: true,
+        path: "/:ten", name: "home-client", component: ProductSport, props: true,
     },
     {
         path: "/login", name: "login", component: login
@@ -22,10 +18,16 @@ const routes = [
         path: "/register", name: "register", component: register
     },
     {
-        path: "/promotion", name: "promotion", component: Discount
+        path: "/promotion", name: "promotion", component: Promotion
     },
     {
         path: "/about", name: "about", component: About
+    },
+    {
+        path: "/contact", name: "contact", component: () => import("@/views/ContactForm.vue"),
+    },
+    {
+        path: "/contactUser", name: "contactUser", component: () => import("@/views/ContactUser.vue"),
     },
     {
         path: "/productdetail/:id",
@@ -33,15 +35,15 @@ const routes = [
         component: () => import("@/views/ProductDetail.vue"),
         props: true
     },
-    {
-        path: "/manager/about", name: "about", component: About
-    },
-    {
-        path: "/productmanager",
-        name: "productmanager",
-        component: () => import("@/views/ProductDetail.vue"),
-        props: true
-    },
+    // {
+    //     path: "/about", name: "about", component: About
+    // },
+    // {
+    //     path: "/Detail",
+    //     name: "Detail",
+    //     component: () => import("@/views/ProductDetail.vue"),
+    //     props: true
+    // },
     {
         path: "/manager/",
         name: "manager",
@@ -54,15 +56,16 @@ const routes = [
                 component: () => import("@/views/ProductManager.vue"),
             },
             {
-                path: "/manager/accountmanager",
+                path: "/manager/usermanager",
                 name: "accountmanager",
-                component: () => import("@/views/AccountManager.vue"),
+                component: () => import("@/views/UserManager.vue"),
             },
             {
                 path: "/manager/ordertmanager",
                 name: "ordermanager",
                 component: () => import("@/views/OrderManager.vue"),
             },
+
             {
                 path: "/manager/promotionmanager",
                 name: "promotionmanager",
@@ -71,7 +74,7 @@ const routes = [
             {
                 path: "/manager/contactnmanager",
                 name: "contactnmanager",
-                component: () => import("@/views/PromotionManager.vue"),
+                component: () => import("@/views/ContactManager.vue"),
             },
             
 
@@ -80,6 +83,16 @@ const routes = [
         name: "statistical",
         component: () => import("@/views/Statistical.vue"),
     },
+    {
+        path: "/statistical",
+        name: "statisticalview",
+        component: () => import("@/views/Statistical.vue"),
+    },
+    {
+        path: "/manager/OrderCheckAdmin/",
+        name: "OrderCheck",
+        component: () => import("@/views/OrderCheck.vue"),
+    }
         ]
    
 
@@ -112,15 +125,32 @@ const routes = [
         component: () => import("@/views/TeamProduct.vue"),
     },
     {
-        path: "/editAccount/:id",
+        path: "/editUser/:id",
         name: "EditUser",
-        component: () => import("@/views/AccountFormEdit.vue"),
+        component: () => import("@/views/UserFormEdit.vue"),
         props: true
     },
     {
-        path: "/CreatAccount/",
+        path: "/CreateUser/",
         name: "AddUser",
-        component: () => import("@/views/AccountFormAdd.vue"),
+        component: () => import("@/views/UserFormAdd.vue"),
+    },
+    {
+        path: "/CreatOrder",
+        name: "AddCart",
+        component: () => import("@/views/OrderFormAdd.vue"),
+    },
+    {
+        path: "/CreatOrder/:name/:price",
+        name: "AddOrder",
+        component: () => import("@/views/OrderFormAdd.vue"),
+        props: true,
+    },
+    {
+        path: "/EditOrder/:id",
+        name: "EditCart",
+        component: () => import("@/views/OrderFormEdit.vue"),
+        props: true,
     },
     {
         path: "/editPromotion/:id",
@@ -143,7 +173,23 @@ const routes = [
         path: "/CreatProduct/",
         name: "AddProduct",
         component: () => import("@/views/ProductFormAdd.vue"),
-    }
+    },
+    {
+        path: "/CartUser/",
+        name: "CartUser",
+        component: () => import("@/views/Cart.vue"),
+    },
+    {
+        path: "/CartUserManager/",
+        name: "CartUserState",
+        component: () => import("@/views/CartUserState.vue"),
+    },
+    {
+        path: "/CartUser/Order",
+        name: "UserOrder",
+        component: () => import("@/views/OrderFormEdit.vue"),
+    },
+
 
 
 ];

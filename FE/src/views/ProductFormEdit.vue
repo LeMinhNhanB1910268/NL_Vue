@@ -37,7 +37,7 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Hình ảnh</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="product.image">
+                        <input type="text" class="form-control"  v-model="product.imageUrl">
                     </div>
                 </div> 
                 

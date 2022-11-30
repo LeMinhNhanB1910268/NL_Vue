@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const multer = require('multer');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const app = express();
 const userRoute = require("./routes/user");
+const contactRoute = require("./routes/contact");
 const authRoute = require("./routes/auth");
 // const accountRoute = require("./routes/account");
 const productRoute = require("./routes/product");
@@ -26,6 +28,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/NNShop", ()=>{
 
 // routes
 app.use("/api/users", userRoute);
+app.use("/api/contacts", contactRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/products", productRoute);
 app.use("/api/promotions", promotionRoute);
@@ -33,3 +36,5 @@ app.use("/api/auth", authRoute);
 app.listen(3000, () => {
     console.log("Server is running...");
 })
+
+

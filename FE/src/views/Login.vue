@@ -24,8 +24,12 @@
                         placeholder=" Nhập vào Password">
                     </div>
                     <div>
-                        <button type="submit" style="width:48%; margin: 0 0 5px 5px" class="btn btn-primary">ĐĂNG NHẬP</button>
-                        <button type="submit" style="width:48%; margin: 0 0 5px 5px;" class="btn btn-danger">ĐĂNG KÝ</button>
+                        <!-- <router-link :to="{name: 'home'} "> -->
+                            <button type="submit" style="width:48%; margin: 0 0 5px 5px" class="btn btn-primary">ĐĂNG NHẬP</button>
+                        <!-- </router-link> -->
+                        <router-link :to="{name: 'register'} ">
+                            <button type="submit" style="width:48%; margin: 0 0 5px 5px;" class="btn btn-danger">ĐĂNG KÝ</button>
+                        </router-link>
                     </div>
                     
                 </form>
@@ -48,8 +52,6 @@ export default{
             evt.preventDefault()
             await authService.login(this.user)
                 .then(response => {
-
-                    console.log(response)
                     localStorage.setItem('token', response.accessToken)
                     localStorage.setItem('admin', response.admin)
                     localStorage.setItem('name', response.name)
@@ -59,10 +61,16 @@ export default{
                     localStorage.setItem('address', response.address)
                     localStorage.setItem('_id', response._id)
                     this.$router.push({
-                        name: 'home-client',
-                        params: { name: response.name },
-                    })
+                    name: 'home-client',
+                    params: {ten: response.name},
                 })
+                    // this.$router.replace({ path: '/' })
+                })
+                // this.$router.go(-1)
+            // ).then(()=> {
+
+            // })
+            // this.$router.replace({ path: '/' })
         }
     },
 }

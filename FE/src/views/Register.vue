@@ -1,26 +1,24 @@
 <template>
     <div class="container" style="margin-bottom:10px">
         <h1 style="text-align:center">Đăng ký</h1>
-        <br />
-        <br />
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form @submit="handleSubmit">
+                <form @submit="handleSubmit" class="form-item">
                     <div class="form-group">
                         <div class="form-group">
-                            <label style="font-weight:bolder">Name:</label>
+                            <label style="font-weight:bolder">Họ và Tên:</label>
                             <input type="text" class="form-control" v-model="name" placeholder=" Nhập vào name">
                         </div>
                         <label style="font-weight:bolder">UserName:</label>
                         <input type="text" class="form-control" v-model="username" placeholder=" Nhập vào username">
                     </div>
                     <div class="form-group">
-                        <label style="font-weight:bolder">Password:</label>
+                        <label style="font-weight:bolder">Mật khẩu:</label>
                         <input type="password" class="form-control" v-model="password" placeholder=" Nhập vào Password">
                     </div>
                     <div class="form-group">
-                        <label style="font-weight:bolder">Password Comfirm:</label>
+                        <label style="font-weight:bolder">Nhập lại mật khẩu:</label>
                         <input type="password" class="form-control" v-model=password_confirm
                             placeholder=" Nhập vào Password ">
                     </div>
@@ -29,11 +27,11 @@
                         <input type="email" class="form-control" v-model="email" placeholder=" Nhập vào Email">
                     </div>
                     <div class="form-group">
-                        <label style="font-weight:bolder">Phone:</label>
+                        <label style="font-weight:bolder">Số điện thoại:</label>
                         <input type="number" class="form-control" v-model="phone" placeholder=" Nhập vào SDT">
                     </div>
                     <div class="form-group">
-                        <label style="font-weight:bolder">Dia chi</label>
+                        <label style="font-weight:bolder">Địa chỉ</label>
                         <input type="text" class="form-control" v-model="address" placeholder=" Nhập vào Dia chi">
                     </div>
                     <div class="form-check" style="margin-bottom: 5%;">
