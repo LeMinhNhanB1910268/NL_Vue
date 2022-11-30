@@ -41,11 +41,11 @@ import CartService from "../services/cart.service";
         </div>
         <div class="row text-center shadow-sm cart-header">
 
-            <p class="col-4">Tên sản phẩm</p>
+            <p class="col-4">Mã đơn</p>
             <div class="col-2">
-                <p>Khích thước</p>
+                <p>Tên SP</p>
             </div>
-            <div class="col-2">
+            <div class="col-2 text-center">
                 <p>Trạng thái</p>
             </div>
             <div class="col-2">
@@ -61,9 +61,10 @@ import CartService from "../services/cart.service";
             :class="{ active: index === activeIndex }">
             <div class="row text-center">
                 <!-- <div class="col-1"><input type="checkbox" style="font-size: 20px;"></div> -->
-                <div class="col-4"><p>{{cart.productName}}</p></div>
+                
+                <div class="col-4">{{cart._id}}</div>
+                <div class="col-2"><p>{{cart.productName}}</p></div>
 
-                <div class="col-2">{{cart.size}}</div>
                 <div class="col-2">{{cart.state}}</div>
                 <div class="col-2">{{cart.sl}}</div>
                 <div class="col-2">

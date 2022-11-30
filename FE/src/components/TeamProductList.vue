@@ -47,7 +47,7 @@
             <img :src="product.imageUrl" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
-                <p class="card-text">Câu lạc bộ: {{ product.club }}</p>
+                <p class="card-text">Đội tuyển: {{ product.club }}</p>
                 <p class="card-text">Giá: {{ product.price}}</p>
                 <p class="card-text">Số lượng: {{ product.number}}</p>
                 <router-link :to="{name: 'productdetail', params: {id: product._id}}">

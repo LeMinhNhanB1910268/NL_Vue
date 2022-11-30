@@ -1,9 +1,9 @@
 <script>
 import CartService from "@/services/cart.service";
-import OrderTable from "../components/OrderCheckTable.vue"
+import OrderCheckTable from "../components/OrderCheckTable.vue"
 export default {
     components: {
-        OrderTable
+        OrderCheckTable
     },
     data() {
         return {
@@ -51,11 +51,11 @@ export default {
     <div>
         <h2 class="mb-4">Danh sách đơn hàng đang giao</h2>
         <div class="row">
-            <OrderTable                 
-                v-if="filteredcartsCount > 0"
+            <OrderCheckTable                 
+                v-if="filteredcartsCount > 0 "
                 :carts="filteredcarts"
                 v-model:activeIndex="activeIndex">
-            </OrderTable>
+            </OrderCheckTable>
         </div>
     </div>
 </template>

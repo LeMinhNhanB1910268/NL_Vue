@@ -1,13 +1,14 @@
 <script>
 import CartService from "../services/cart.service";
 import SearchTable from "@/components/SearchTable.vue";
-import ProductService from "@/services/product.service";
+
 export default {
     data() {
         return {
             carts: [],
             searchText: "",
             activeIndex: -1,
+            state: ''
         }
     },
     components: {
@@ -28,12 +29,17 @@ export default {
                     {
                         state: "đang giao"
                 })
+            this.$forceUpdate()
+            this.$router.go()
         },
         async Refuse(id){
             await CartService.update(id,
                     {
                         state: "từ chối"
+         
                 })
+            this.$forceUpdate()
+            this.$router.go()
         }
         
     },
@@ -82,10 +88,9 @@ export default {
         <table class="table table-striped mt-2" id="table_id" >
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" style="max-width: 50px;">#</th>
+                    <th scope="col">Mã đơn hàng</th>
                     <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Kích thước</th>
-                    <th scope="col">Tên In</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Phê duyệt</th>
                     <th scope="col">Hiệu chỉnh</th>
@@ -94,12 +99,11 @@ export default {
             <tbody v-if="filteredCartsCount > 0"  v-for="(cart, index) in  carts.filter(cart => cart.state === 'chờ xữ lý')" :key="cart._id" :class="{ active: index === activeIndex }">
                 <tr id="rtable">
                     <th scope="row"></th>
+                    <td>{{ cart._id }}</td>
                     <td>{{ cart.productName }}</td>
-                    <td>{{ cart.size }}</td>
-                    <td>{{ cart.namePlayer }}</td>
                     <td>{{ cart.state }}</td>
                     <td>
-                        <button type="button" class="btn btn-success" @click="Confirm(cart._id)"><i class="fa-solid fa-check"></i></button>
+                        <button type="button" class="btn btn-success" @click="Confirm(cart._id)"><i class="fa-solid fa-check" ></i></button>
                         <button type="button" class="btn btn-danger ml-3" @click="Refuse(cart._id)"><i class="fa-solid fa-xmark"></i></button>
                     </td>
                     <td>

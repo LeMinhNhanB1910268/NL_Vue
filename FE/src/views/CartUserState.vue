@@ -38,7 +38,10 @@ import CartService from "../services/cart.service";
     <div class="container">
         <div class="row text-center shadow-sm cart-header">
 
-            <p class="col-4">Tên sản phẩm</p>
+            <p class="col-4">Mã đơn</p>
+            <div class="col-2">
+                <p>Tên sản phẩm</p>
+            </div>
             <div class="col-2">
                 <p>Khích thước</p>
             </div>
@@ -48,27 +51,26 @@ import CartService from "../services/cart.service";
             <div class="col-2">
                 <p>Số lượng</p>
             </div>
-            <div class="col-2">
-                <p>Tháo tác</p>
-            </div>
         </div>
         
         <div class="col-12 cart shadow-sm" 
             v-for="(cart, index) in carts.filter(cart => cart.userId === _id && cart.state != '')" :key="cart._id"
             :class="{ active: index === activeIndex }">
             <div class="row text-center">
-                <div class="col-4"><p>{{cart.productName}}</p></div>
+                <div class="col-4"><p>{{cart._id}}</p></div>
+                <div class="col-2">{{cart.productName}}</div>
                 <div class="col-2">{{cart.size}}</div>
+                
                 <div class="col-2">{{cart.state}}</div>
                 <div class="col-2">{{cart.sl}}</div>
-                <div class="col-2">
-
+                <!-- <div class="col-2">
+                
                     <router-link :to="{name: 'UserOrder'}">
                         <button class="btn btn-success mr-2" @click="Confirm(cart._id)">Đặt hàng</button>
                     </router-link>
                     <button class="btn btn-danger" @click="DeleteCart(cart._id)">Xóa</button>
                     
-                </div>
+                </div> -->
             </div>
 
     

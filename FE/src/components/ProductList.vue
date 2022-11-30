@@ -58,7 +58,7 @@
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Câu lạc bộ: {{ product.club }}</p>
                 <p class="card-text">Giá: {{ product.price}}</p>
-                <p class="card-text">Số lượng: {{ product.number}}</p>
+                <p class="card-text">Số lượng: {{ product.amount}}</p>
                 <router-link :to="{name: 'productdetail', params: {id: product._id}}">
                     <button class="show-detail text-white">Xem chi tiết sản phẩm</button>
                 </router-link>

@@ -134,7 +134,7 @@ export default {
                         <router-link :to="{name: 'usermanager'}">
                             <a class="dropdown-item" href="#">Xin chào: <p>{{username}}</p></a>
                         </router-link>
-                        <router-link :to="{name: 'CartUser'}">
+                        <router-link :to="{name: 'CartUserState'}">
                             <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
                         </router-link>
                         <router-link :to="{name: 'contactUser'}">
