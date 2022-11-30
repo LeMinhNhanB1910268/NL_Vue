@@ -44,6 +44,8 @@ export default {
     },
     mounted() {
         this.refreshList();
+        console.log(this._id)
+        console.log(this.contacts.userId)
     },
 };
 
@@ -53,7 +55,7 @@ export default {
         <h2 class="mb-4">Danh sách liên hệ</h2>
         <div class="row">
             <ContactTable                 
-                v-if="filteredcontactsCount > 0 && contacts.userId === _id"
+                v-if="filteredcontactsCount > 0"
                 :contacts="filteredcontacts"
                 v-model:activeIndex="activeIndex">
             </ContactTable>

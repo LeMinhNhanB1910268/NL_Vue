@@ -52,7 +52,7 @@ export default {
         <h2 class="mb-4">Danh sách liên hệ </h2>
         <div class="row">
             <ContactTable                 
-                v-if="filteredcontactsCount > 0 && contacts.state === 'chờ xữ lý'"
+                v-if="filteredcontactsCount > 0"
                 :contacts="filteredcontacts"
                 v-model:activeIndex="activeIndex">
             </ContactTable>

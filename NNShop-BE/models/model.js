@@ -108,6 +108,9 @@ const contactSchema = new mongoose.Schema({
     note: { 
         type: String
     },
+    state: { 
+        type: String
+    },
     imageUrl: { 
         type: String
     },

@@ -8,6 +8,8 @@ export default{
             contacts: [],
             searchText: "",
             activeIndex: -1,
+            admin : localStorage.getItem('admin'),
+            _id : localStorage.getItem('_id'),
         }
     },
     components: {
@@ -20,10 +22,11 @@ export default{
     },
     methods: {
         async Confirm(id){
-            await CartService.update(id,
+            await ContactService.update(id,
                 {
                     state: "đã xữ lý"
                 })
+            this.$router.go()
         }
     },
     computed: {
@@ -61,19 +64,19 @@ export default{
         <div class="col-5"></div>
         <SearchTable class="col-4" v-model="searchText" />
     </div>
-    <table class="table table-striped mt-2" id="table_id" >
+    <table class="table table-striped mt-2" id="table_id" v-if="admin === 'Admin'" >
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">UID</th>
                 <th scope="col">Vấn đề</th>
-                <th scope="col" style="max-width: 100px" >Trạng thái</th>
+                <th scope="col">Trạng thái</th>
                 <th scope="col">Mô tả</th>
                 <th scope="col">Xữ lý</th>
             </tr>
         </thead>
-        <tbody  v-if="filteredContactsCount > 0"       
-        v-for="(contact, index) in filteredContacts"
+        <tbody  v-if="(filteredContactsCount > 0)"       
+        v-for="(contact, index) in contacts.filter(contact => contact.state === 'chờ xữ lý')"
         :key="contact._id"
         :class="{ active: index === activeIndex }"
         >
@@ -86,6 +89,39 @@ export default{
                 <td >{{contact.description}}</td>
                 <td>
                     <button type="button" class="btn btn-success ml-3" @click="Confirm(contact._id)">Đã xữ lý</button>
+                </td>
+            </tr>
+        </tbody>
+        <tbody v-else class="text-center">
+            Không tìm thấy liên hệ
+        </tbody>
+    </table>
+    <table class="table table-striped mt-2" id="table_id" v-else >
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">UID</th>
+                <th scope="col">Vấn đề</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Thời gian</th>
+            </tr>
+        </thead>
+        <tbody  v-if="filteredContactsCount > 0"       
+        v-for="(contact, index) in contacts.filter(contact => contact.userId === this._id)"
+        :key="contact._id"
+        :class="{ active: index === activeIndex }"
+        >
+            <tr id="rtable">
+                <th scope="row"></th>
+                <td>{{contact.userId}}</td>
+                <td>{{contact.problem}}</td>
+
+                <td >{{contact.state}}</td>
+                <td >{{contact.description}}</td>
+                <td>
+                    <!-- <button type="button" class="btn btn-success ml-3" @click="Confirm(contact._id)">Đã xữ lý</button> -->
+                    {{contact.time}}
                 </td>
             </tr>
         </tbody>

@@ -16,8 +16,8 @@
         </section>
     </div>
     <div class="text-center rounded-bottom p-3 text-white" style="background-color: #ff6b6b;">
-        © 2021 Copyright:
-        <a class="text-white" href="#">12Store.com</a>
+        © 2022 Copyright:
+        <a class="text-white" href="#">NNShop.com</a>
         <a href="#top" class="backtotop"><i class="fas fa-angle-up"></i></a>
     </div>
     
