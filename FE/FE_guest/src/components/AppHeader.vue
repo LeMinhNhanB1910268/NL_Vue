@@ -45,7 +45,6 @@ export default {
         this.$router.go(0)
 
     },
-
     },
     computed:{
         productStrings() {
@@ -68,16 +67,12 @@ export default {
         filteredProductsCount() {
             return this.filteredProducts.length;
         },
-
     },
     async created(){
         this.name = this.$route.params.name
        this.products = await productService.getAll();
     },
-
 }
-
-
 </script>
 <template>
     <nav class="navbar navbar-light shadow-sm" style="background-color: #ff6b6b;">
