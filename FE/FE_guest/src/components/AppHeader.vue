@@ -3,22 +3,6 @@ import InputSearch from "@/components/InputSearch.vue";
 import ListSearchVue from "./ListSearch.vue";
 import productService from "../services/product.service";
 export default {
-//     props:{
-//     id:{ type: String, required: true },
-//   },
-//   data () {
-//     return {
-//       product:{},
-//     };
-//   },
-//   method9s: {
-//     async getbyid(id) {
-//       this.product = await ProductService.get(id)
-//     }
-//   },
-//   created() {
-//     this.getbyid(this.id);
-//   },
     data(){
         return{
             products:[],
