@@ -5,7 +5,6 @@
                 :class="{ active: index === activeIndex }">
                 <router-link :to=" { name:'productdetail',
                             params:{id: product._id }, searchText: ''}">
-
              
             <li class="list-group-item">
                 <div class="card mb-3" style="max-width: 540px;">

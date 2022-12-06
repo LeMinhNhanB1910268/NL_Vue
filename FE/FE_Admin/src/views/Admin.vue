@@ -4,9 +4,9 @@
     <div class="row"  >
     <div class="col-3 link menu mt-4" >
       <ul class="list-group ">
-        <li class="list-group-item" style="list-style: none; text-decoration: none"> <h2>Thanh điều khiển</h2></li>
+        <li class="list-group-item active" style="list-style: none; text-decoration: none;"> <h2 style="color: white;">Thanh điều khiển</h2></li>
         <router-link :to="{ name: 'statistical' }" style="list-style: none; text-decoration: none">
-          <li class="list-group-item active">Thống kê</li>
+          <li class="list-group-item">Thống kê</li>
         </router-link>
         <router-link :to="{ name: 'OrderCheck' }" style="list-style: none; text-decoration: none">
         <li class="list-group-item">Kiểm tra đơn hàng</li>

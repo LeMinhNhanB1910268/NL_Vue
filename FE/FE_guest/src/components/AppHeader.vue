@@ -31,9 +31,9 @@ export default {
             username : localStorage.getItem('username'),
         }
     },
-    async created(){
-       this.products = await productService.getAll();
-    },
+    // async created(){
+    //    this.products = await productService.getAll();
+    // },
    components: {
         InputSearch,
         ListSearchVue 
@@ -44,7 +44,7 @@ export default {
         }
     },
     methods:{
-        sreach(){
+        search(){
             if(this.searchText != ""){
                  this.a=1;
             }else  this.a=0;
@@ -61,11 +61,6 @@ export default {
         this.$router.go(0)
 
     },
-        reload(){
-
-        }
-
-
 
     },
     computed:{
@@ -91,9 +86,9 @@ export default {
         },
 
     },
-    created(){
-        this.name=this.$route.params.name
-
+    async created(){
+        this.name = this.$route.params.name
+       this.products = await productService.getAll();
     },
 
 }
@@ -161,7 +156,7 @@ export default {
     <div class="navigation shadow-sm p-3 mb-5 bg-white rounded">
         <div class=" d-flex justify-content-around">
             <a href="/" class="logo d-none d-sm-flex"> <img src="../assets/logo.png" alt="logo" style="height: 100px; width:100px; margin-left: 300%;"> </a>
-            <InputSearch v-model="searchText" class="search" @keyup="sreach" />
+            <InputSearch v-model="searchText" class="search" @keyup="search" />
             <ListSearchVue 
                 v-if="filteredProductsCount>0 && a==1"
                 :products = "filteredProducts"

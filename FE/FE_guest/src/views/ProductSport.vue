@@ -1,6 +1,6 @@
 
 <template>
-    <AppHeader v-if="this.$router.params === name"/>
+    <!-- <AppHeader v-if="this.$router.params === name"/> -->
     <div class="row">
         <div class="container">
             <Slideshow />
@@ -66,7 +66,7 @@ export default {
         TeamProductListVue,
         ClubProductListVue,
         AppHeader,
-        ListSearch
+        ListSearch,
     },
     data() {
         return {
@@ -87,8 +87,8 @@ export default {
     computed: {
         productStrings() {
             return this.products.map((product) => {
-                const { name, clb, number } = product;
-                return [name, clb, number].join("");
+                const { name, clb } = product;
+                return [name, clb].join("");
             });
         },
     // Trả về các product có chứa thông tin cần tìm kiếm.
