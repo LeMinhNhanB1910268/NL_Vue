@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "63873def1c2adaf54a8ab79b"
+  },
+  "name": "Khuyến mãi nhân dịp tết Tây",
+  "discount": "20%",
+  "start": "21/12/2022",
+  "end": "02/01/2023",
+  "description": "Chương trình áp dụng cho tất cả sản phẩm đang bán trên của hàng",
+  "imageUrl": "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltb4841f90b9b56efd/62c6f28ba9f4bf4485d4f685/Manchester_United_2022-23_home_kit.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "638773b60e675b0cd41d0c20"
+  },
+  "name": "Tri ân khách hàng",
+  "discount": "Tặng vocher",
+  "start": "21/12/2022",
+  "end": "02/01/2023",
+  "description": "Chương trình áp dụng cho tất cả sản phẩm đang bán trên của hàng",
+  "imageUrl": "https://vivicorp.com/images/nang-cap-2019/chinh%20sach%20khuyen%20mai.jpeg",
+  "__v": 0
+}]

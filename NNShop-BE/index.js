@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const multer = require('multer');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -13,6 +12,8 @@ const productRoute = require("./routes/product");
 const promotionRoute = require("./routes/promotion");
 const cartRoute = require("./routes/cart");
 const parser = require ("body-parser");
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' });
 dotenv.config();
 app.use(cors());
 app.use(cookieParser());
@@ -38,3 +39,8 @@ app.listen(3000, () => {
 })
 
 
+
+app.post('/contact', upload.single('file'), function(req, res, next) {
+    // req.file là 1 file `avatar` được upload
+    // req.body sẽ giữ thông tin gắn kèm (vd: text fields), nếu có
+  });

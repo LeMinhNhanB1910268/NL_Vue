@@ -1,6 +1,4 @@
 const {Contact} = require("../models/model");
-// var multer = require('multer');
-// var upload = multer({ dest: 'uploads/' });
 
 const contactController = {
     addContact: async(req, res) => {
