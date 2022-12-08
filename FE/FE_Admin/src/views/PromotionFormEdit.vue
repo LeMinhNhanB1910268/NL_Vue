@@ -76,6 +76,4 @@ import promotionService from '../services/promotion.service';
             this.getPromotion(this.id)
         }
     }
-
 </script>
-    

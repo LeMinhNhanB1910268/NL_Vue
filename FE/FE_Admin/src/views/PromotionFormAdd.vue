@@ -1,7 +1,7 @@
 <template>
     <div class="form shadow-lg">
         <h3 class="text-center mt-4">Thêm khuyến mãi</h3>
-        <form @submit="AddPromotion(promotion)" class="form-item">
+        <form @submit.prevent="AddPromotion()" class="form-item"  enctype="multipart/form-data">
             <div class="form-group" >
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Tên</label>
@@ -36,7 +36,7 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Hình ảnh</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="promotion.imageUrl">
+                        <input type="file" class="form-control" @change="previewFiles" multiple  >
                     </div>
                 </div>
 
@@ -63,6 +63,7 @@
 <script>
 import promotionService from '../services/promotion.service';
 import userService from '../services/user.service';
+import axios from "axios";
     export default {
         data(){
             return{
@@ -73,19 +74,33 @@ import userService from '../services/user.service';
         },
 
         methods: {
-
-            async AddPromotion(data){
-                 await promotionService.create(
-                    {
-                        name: this.promotion.name, 
-                        discount: this.promotion.discount,
-                        start: this.promotion.start,
-                        end: this.promotion.end,
-                        description: this.promotion.description,
-                        imageUrl: this.promotion.imageUrl,
-                    })
-
-            }
+            async AddPromotion() {
+        try {
+        //   console.log(this.promotion.imageUrl);
+          const response = await axios({
+            method: "post",
+            url: "http://localhost:3000/api/promotions",
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            data: {
+                name: this.promotion.name, 
+                discount: this.promotion.discount,
+                start: this.promotion.start,
+                end: this.promotion.end,
+                description: this.promotion.description,
+                imageUrl: this.promotion.imageUrl,
+            },
+          });
+          console.log(response);
+        } catch (e) {
+          console.log(e);
+        }
+      },
+            previewFiles(event) {
+                console.log(event.target.files[0]);
+                this.promotion.imageUrl = event.target.files[0];
+      },
         },
         created(){
             this.promotion = {};
@@ -94,4 +109,3 @@ import userService from '../services/user.service';
     }
 
 </script>
-    

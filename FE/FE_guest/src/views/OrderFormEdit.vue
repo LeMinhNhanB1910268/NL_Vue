@@ -6,13 +6,19 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="cart.productName">
+                        <input type="text" class="form-control" disabled v-model="cart.productName">
                     </div>
                 </div>
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Giá</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="cart.productPrice">
+                        <input type="text" class="form-control" disabled v-model="cart.productPrice">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  v-model="address">
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -49,7 +55,7 @@
                 <!-- <router-link :to="{name: 'home'}" v-if="admin === ''"> 
                 <button class="btn btn-primary mt-4">Lưu1</button>
                 </router-link> -->
-                <button class="btn btn-primary mt-4">Lưu</button>
+                <button class="btn btn-primary mt-4">Đặt hàng</button>
                 <router-link :to="{name: 'home'}" v-if="admin === ''"> 
                     <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
                 </router-link>
@@ -77,6 +83,7 @@ import cartService from '../services/cart.service';
                 cart:{},
                 // id : this.$route.params.id
                 admin : localStorage.getItem('admin'),
+                address : localStorage.getItem('address'),
             }
         },
         props:{
@@ -88,9 +95,10 @@ import cartService from '../services/cart.service';
             },
             async EditOrder(id,cart){
                 this.cart = await cartService.update(id,{
+                    userAddress: this.address,
                     productName : this.cart.productName,
                     productPrice: this.cart.productPrice,
-                    sizz: this.cart.size,
+                    size: this.cart.size,
                     number: this.cart.number,
                     namePlayer: this.cart.namePlayer,
                     description: this.cart.description,

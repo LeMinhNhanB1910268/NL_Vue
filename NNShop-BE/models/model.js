@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
         // require: true
     },
     amount: {
-        type: String
+        type: Number,
     },
 
 })
@@ -55,9 +55,12 @@ const cartSchema = new mongoose.Schema({
         type: String,
     },
     sl: {
-        type: String,
+        type: Number,
     },
     productPrice: {
+        type: String
+    },
+    userAddress: {
         type: String
     }
 

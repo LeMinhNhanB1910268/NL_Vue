@@ -1,7 +1,7 @@
 <template>
     <div class="form shadow-lg">
         <h3 class="text-center mt-4">Thêm sản phẩm</h3>
-        <form @submit="AddProduct(product)" class="form-item">
+        <form @submit.prevent="AddProduct()" class="form-item">
             <div class="form-group" >
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
@@ -36,7 +36,7 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Hình ảnh</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" v-model="product.imageUrl" >
+                        <input type="file" class="form-control" @change="previewFiles" multiple >
 
                     </div>
                 </div> 
@@ -61,6 +61,7 @@
 <script>
 import productService from '../services/product.service';
 import userService from '../services/user.service';
+import axios from "axios";
     export default {
         data(){
             return{
@@ -74,28 +75,35 @@ import userService from '../services/user.service';
         //     id : {type: String, required: true},
         // },
         methods: {
-            // async getAccout(id){
-            //     this.product = await productService.get(id)
-            // },
-            async AddProduct(data){
-                 await productService.create(
-                    {
+            async AddProduct() {
+                try {
+                console.log(this.product.imageUrl);
+                const response = await axios({
+                    method: "post",
+                    url: "http://localhost:3000/api/products/",
+                    headers: {
+                    "Content-Type": "multipart/form-data",
+                    },
+                    data: {
                         name: this.product.name, 
                         genres: this.product.genres,
                         amount: this.product.amount,
                         price: this.product.price,
                         club: this.product.club,
                         imageUrl: this.product.imageUrl,
+                    },
+                });
 
-                    })
-
-                    // await userService.create(
-                    //     name: this.user.name, 
-                    //     phone: this.user.phone,
-                    //     email: this.user.email,
-                    //     address: this.user.address,
-                    // )
-            }
+                console.log(response);
+                } catch (e) {
+                console.log(e);
+                }
+            },
+            previewFiles(event) {
+                console.log(event.target.files[0]);
+                this.product.imageUrl = event.target.files[0];
+            },
+    
         },
         created(){
             this.product = {};
@@ -104,4 +112,3 @@ import userService from '../services/user.service';
     }
 
 </script>
-    

@@ -190,6 +190,11 @@ const routes = [
         component: () => import("@/views/OrderFormEdit.vue"),
         props: true
     },
+    // {
+    //     path: "/hihi",
+    //     name: "UserOrder",
+    //     component: () => import("@/views/hihi.vue"),
+    // },
 
 
 ];

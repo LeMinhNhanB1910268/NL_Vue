@@ -34,8 +34,8 @@ import CartService from "../services/cart.service";
         </div>
         <div class="row text-center shadow-sm cart-header">
 
-            <p class="col-4">Mã đơn</p>
-            <div class="col-2">
+            <p class="col-3">Mã đơn</p>
+            <div class="col-3">
                 <p>Tên SP</p>
             </div>
             <div class="col-2 text-center">
@@ -55,8 +55,8 @@ import CartService from "../services/cart.service";
             <div class="row text-center">
                 <!-- <div class="col-1"><input type="checkbox" style="font-size: 20px;"></div> -->
                 
-                <div class="col-4">{{cart._id}}</div>
-                <div class="col-2"><p>{{cart.productName}}</p></div>
+                <div class="col-3">{{cart._id}}</div>
+                <div class="col-3"><p>{{cart.productName}}</p></div>
                 <div class="col-2">{{cart.state}}</div>
                 <div class="col-2">{{cart.sl}}</div>
                 <div class="col-2">

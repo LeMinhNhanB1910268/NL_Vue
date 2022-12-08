@@ -10,7 +10,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="https://media.vov.vn/sites/default/files/styles/large/public/2021-08/man_city_0.jpg" alt="..." style="width:100px">
+                            <img :src="'http://localhost:3000/openFile/open?imageUrl='+product.imageUrl" alt="..." style="width:100px">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -20,7 +20,6 @@
                         </div>
                     </div>
                 </div>
-
             </li> 
           </router-link>
         </div>

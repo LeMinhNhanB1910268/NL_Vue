@@ -3,6 +3,8 @@ const {Promotion} = require("../models/model");
 const promotionController = {
     addPromotion: async(req, res) => {
         try {
+            let link_image = req.file.filename;
+            req.body.imageUrl = link_image;
             const newPromotion = new Promotion(req.body);
             const savedPromotion = await newPromotion.save();
             res.status(200).json(savedPromotion);

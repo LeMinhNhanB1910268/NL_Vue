@@ -21,6 +21,7 @@ export default {
   },
   created() {
     this.getbyid(this.id);
+    console.log(this.product.imageUrl)
   },
 }
 </script>
@@ -49,7 +50,7 @@ export default {
     <div class="container">
         <div class="row" v-if="product">
           <div class="col-sm-4">
-            <img :src="product.imageUrl" class="card-img-top" alt="...">
+            <img :src="'http://localhost:3000/openFile/open?imageUrl='+product.imageUrl" class="card-img-top" alt="...">
           </div>
           <div class="col-sm-8">
             <div class="ml-5">

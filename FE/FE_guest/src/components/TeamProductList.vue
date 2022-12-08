@@ -44,7 +44,7 @@
         @click="updateActiveIndex(index)"
         >
         <div class="card d-inline">
-            <img :src="product.imageUrl" class="card-img-top" alt="...">
+            <img :src="'http://localhost:3000/openFile/open?imageUrl='+product.imageUrl" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Đội tuyển: {{ product.club }}</p>

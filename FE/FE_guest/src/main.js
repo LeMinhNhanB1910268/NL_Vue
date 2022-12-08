@@ -15,7 +15,22 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 
 // const app = createApp(App).use(router)
+// Import the functions you need from the SDKs you need
+import { initializeApp} from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+initializeApp({
+    apiKey: "AIzaSyCl_UKzEPS6mpRoH1Xu39LGgmiJot9dgmI",
+    authDomain: "ct271-afe88.firebaseapp.com",
+    projectId: "ct271-afe88",
+    storageBucket: "ct271-afe88.appspot.com",
+    messagingSenderId: "364292603648",
+    appId: "1:364292603648:web:97f4e9171f074df2d43de5"
+  }) ;
+
+// Initialize Firebase
 // app.mount('#app')
 // app.use(VueSimpleAlert)
 
@@ -25,6 +40,7 @@ app.use(router);
 // .mount('#app');
 app.use(Antd);
 app.mount('#app');
+
 
 
 // createApp(App).use(VueSimpleAlert, { reverseButtons: true });

@@ -1,5 +1,5 @@
 <script>
-    import AccountService from '../services/cart.service'
+    import CartService from '../services/cart.service'
     import ProductService from "@/services/product.service";
     export default {
         data(){
@@ -21,7 +21,7 @@
         async AddtoCart(id){
             const product = await ProductService.get(id);
 
-            await AccountService.create({
+            await CartService.create({
                 userId: this._id,
                 productId: product._id,
                 productName: product.name,
@@ -53,7 +53,8 @@
         @click="updateActiveIndex(index)"
         >
         <div>
-            <img :src="product.imageUrl" class="card-img-top" alt="...">
+            <img :src="'http://localhost:3000/openFile/open?imageUrl='+product.imageUrl" class="card-img-top" alt="...">
+            <!-- <img :src="product.imageUrl" class="card-img-top" alt="..."> -->
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Câu lạc bộ: {{ product.club }}</p>

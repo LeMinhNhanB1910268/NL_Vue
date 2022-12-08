@@ -25,7 +25,7 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label ">Tên SP</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" v-model="productName">
+                        <input type="text" class="form-control " disabled v-model="productName">
                     </div>
                 </div>
 
@@ -38,7 +38,13 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label ">Giá</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" v-model="productPrice">
+                        <input type="text" class="form-control" disabled v-model="productPrice">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <label class="col-sm-2 col-form-label ">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model="address">
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -110,15 +116,15 @@ import ProductService from '../services/product.service';
             //    id : this.$route.params.id
                 productName: "",
                 productPrice: "",
-                sl: "",
                 product: {},
                 admin : localStorage.getItem('admin'),
+                address : localStorage.getItem('address'),
             }
         },
         props:{
             name : {type: String, req: true},
             price : {type: String, req: true},
-            amount : {type: String, req: true},
+            amount : {type: Number, req: true},
             proid : {type: String, req: true},
         },
         methods: {
@@ -134,6 +140,7 @@ import ProductService from '../services/product.service';
                  await cartService.create(
                     {          
                         userId: this._id,
+                        userAddress: this.address,
                         productName: this.productName, 
                         productPrice: this.productPrice, 
                         size: this.cart.size,
@@ -143,11 +150,14 @@ import ProductService from '../services/product.service';
                         description: this.cart.description,
                         state: "chờ xữ lý"
                     }
-                ),
+                ).then(
+                    await ProductService.update(proid,{
+                    amount: this.amount - parseInt(this.cart.sl)
+                    // amount: this.a
+                }))
                 //tru sl trong kho
-                await ProductService.update(proid,{
-                    amount: this.amount - 1
-                })
+                // a = await eval((this.amount - this.cart.sl).valueOf())
+               
 
             }},
             created(){
@@ -159,7 +169,6 @@ import ProductService from '../services/product.service';
              if((this.name != undefined) && (this.price != undefined) ){
                 this.productName = this.name;
                 this.productPrice = this.price;
-                this.sl = this.cart.sl;
              }
           }
         }

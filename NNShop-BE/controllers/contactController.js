@@ -3,6 +3,8 @@ const {Contact} = require("../models/model");
 const contactController = {
     addContact: async(req, res) => {
         try {
+            let link_image = req.file.filename;
+            req.body.imageUrl = link_image;
             const newContact = new Contact(req.body);
             const savedContact = await newContact.save();
             res.status(200).json(savedContact);
