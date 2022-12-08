@@ -1,7 +1,7 @@
 <template>
     <div class="form shadow-lg">
         <h3 class="text-center mt-4">Thêm khuyến mãi</h3>
-        <form @submit.prevent="AddPromotion()" class="form-item"  enctype="multipart/form-data">
+        <form @submit="AddPromotion()" class="form-item"  enctype="multipart/form-data">
             <div class="form-group" >
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Tên</label>
