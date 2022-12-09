@@ -1,7 +1,7 @@
 <template>
     <div class="form shadow-lg">
         <h3 class="text-center mt-4">Thêm đơn hàng</h3>
-        <form @submit.prevent="AddOrder(proid)" class="form-item">
+        <form @submit="AddOrder(proid)" class="form-item">
             <div class="form-group" >
                 <div class="row mt-4" v-if="admin === 'Admin'">
                     <label class="col-sm-2 col-form-label ">UID</label>

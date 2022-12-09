@@ -66,6 +66,7 @@ export default {
             email: '',
             phone: '',
             address: '',
+            admin: '',
         }
     },
     methods: {
@@ -78,7 +79,8 @@ export default {
                 password_confirm: this.password_confirm,
                 email: this.email,
                 phone: this.phone,
-                address: this.address
+                address: this.address,
+                admin: this.admin
             };
 
             await authService.register(data)

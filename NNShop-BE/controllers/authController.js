@@ -18,6 +18,7 @@ const authController = {
                 password: hashed,
                 phone: req.body.phone,
                 address: req.body.address,
+                admin: req.body.admin,
             });
 
             //save to BD

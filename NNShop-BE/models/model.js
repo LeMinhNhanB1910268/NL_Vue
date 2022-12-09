@@ -25,6 +25,7 @@ const productSchema = new mongoose.Schema({
     },
     amount: {
         type: Number,
+        min: [0, 'Het hang']
     },
 
 })

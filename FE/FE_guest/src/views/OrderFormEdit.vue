@@ -1,6 +1,6 @@
 <template>
     <div v-if="cart" class="form shadow-lg">
-        <form @submit.prevent="EditOrder(id, cart)" class="form-item">
+        <form @submit="EditOrder(id, cart)" class="form-item">
             <h3 class="text-center mt-4">Thay đổi thông tin đơn hàng</h3>
             <div class="form-group">
                 <div class="row mt-4">
