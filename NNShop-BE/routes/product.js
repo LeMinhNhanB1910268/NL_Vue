@@ -24,22 +24,12 @@ router.get("/:id",productController.getProduct);
 
 
 router.put("/:id",upload.single("imageUrl"),productController.updateProduct);
+// router.put("/:id",productController.updateProduct);
 
 router.delete("/:id", productController.deleteProduct);
 // router.get("/hihi",productController.getImage);
 
 router.get ("/open", productController.getAllProduct
-  // let imageName = "uploads/" + req.query.image_Name;
-  // console.log(imageName);
-  // fs.readFile(imageName, (err, imageData) =>{
-  //   if (err) {
-  //     res.json({
-  //       result: "failed",
-  //       messege: `cannot: ${err}`
-  //     })
-  //   }
-  //   res.writeHead(200, {'Content-Type': 'image/*'});
-  //   res.end(imgageData)
-  // })
+
 );
 module.exports = router;

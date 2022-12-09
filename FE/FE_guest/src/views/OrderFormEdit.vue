@@ -1,6 +1,6 @@
 <template>
     <div v-if="cart" class="form shadow-lg">
-        <form @submit="EditOrder(id, cart)" class="form-item">
+        <form @submit.prevent="EditOrder(id, cart)" class="form-item">
             <h3 class="text-center mt-4">Thay đổi thông tin đơn hàng</h3>
             <div class="form-group">
                 <div class="row mt-4">
@@ -77,11 +77,13 @@
 </style>
 <script>
 import cartService from '../services/cart.service';
+import ProductService from '../services/product.service';
     export default {
         data(){
             return{
                 cart:{},
                 // id : this.$route.params.id
+                product: {},
                 admin : localStorage.getItem('admin'),
                 address : localStorage.getItem('address'),
             }
@@ -91,8 +93,12 @@ import cartService from '../services/cart.service';
         },
         methods: {
             async getOrder(id){
-                this.cart = await cartService.get(id)
+                this.cart = await cartService.get(id),
+                this.product = await ProductService.get(this.cart.productId)
             },
+            // async getbyid(productId) {
+            //     this.product = await ProductService.get(this.cart.productId)
+            // },
             async EditOrder(id,cart){
                 this.cart = await cartService.update(id,{
                     userAddress: this.address,
@@ -104,7 +110,12 @@ import cartService from '../services/cart.service';
                     description: this.cart.description,
                     sl: this.cart.sl,
                     state: "chờ xữ lý"
-                })
+                }).then(
+                    await ProductService.update(this.cart.productId,{
+                    amount: this.product.amount - parseInt(this.cart.sl)
+                    // amount: this.a
+                }
+                ),)
             },
             async Confirm(id){
             // const cart =
@@ -117,6 +128,7 @@ import cartService from '../services/cart.service';
         },
         created(){
             this.getOrder(this.id)
+            // getbyid(this.cart.productId)
         }
     }
 

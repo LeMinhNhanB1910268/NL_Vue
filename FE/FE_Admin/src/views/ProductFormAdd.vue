@@ -36,12 +36,12 @@
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label">Hình ảnh</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" @change="previewFiles" multiple >
+                        <input type="file" @change="previewFiles" multiple >
 
                     </div>
                 </div> 
                 <button class="btn btn-primary mt-4">Thêm</button>
-                <router-link :to="{name: 'home'}"> 
+                <router-link :to="{name: 'productmanager'}"> 
                     <button type="button" class="btn btn-secondary ml-4 mt-4">Quay lại</button>
                 </router-link>
             </div>

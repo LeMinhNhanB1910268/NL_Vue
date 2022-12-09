@@ -6,6 +6,7 @@ import CartService from "../services/cart.service";
             return {
                 carts: [],
                 _id : localStorage.getItem('_id'),
+                admin : localStorage.getItem('admin'),
                 searchText: "",
                 activeIndex: -1,
             }
@@ -64,6 +65,7 @@ import CartService from "../services/cart.service";
                     <router-link :to="{name: 'UserOrder', params: {id: cart._id}}">
                         <button class="btn btn-success mr-2">Đặt hàng</button>
                     </router-link>
+      
                     <button class="btn btn-danger" @click="DeleteCart(cart._id)">Xóa</button>
                     
                 </div>

@@ -21,6 +21,12 @@ const routes = [
         path: "/promotion", name: "promotion", component: Promotion
     },
     {
+        path: "/promotiondetail/:id",
+        name: "promotiondetail",
+        component: () => import("@/views/PromotionDetail.vue"),
+        props: true
+    },
+    {
         path: "/about", name: "about", component: About
     },
     {

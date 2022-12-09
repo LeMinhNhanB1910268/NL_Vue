@@ -27,7 +27,11 @@ export default{
                     state: "đã xữ lý"
                 })
             this.$router.go()
-        }
+        },
+        async DeleteUser(id) {
+            await ContactService.delete(id);
+            this.contacts = await ContactService.getAll();
+        },
     },
     computed: {
         contactStrings() {
@@ -89,6 +93,7 @@ export default{
                 <td >{{contact.description}}</td>
                 <td>
                     <button type="button" class="btn btn-success ml-3" @click="Confirm(contact._id)">Đã xữ lý</button>
+                    <button type="button" class="btn btn-danger ml-3" @click="DeleteUser(contact._id)"><i class="fa-solid fa-trash"></i></button>
                 </td>
             </tr>
         </tbody>

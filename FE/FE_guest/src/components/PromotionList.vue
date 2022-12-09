@@ -23,24 +23,30 @@
         margin-left: 10px;
         color: red;
     }
+    .link{
+      text-decoration: none;
+    }
 </style>
 <template>
     <div class="card mb-3" style="max-width: 700px;" 
         v-for="(promotion, index) in promotions"
         :key="promotion._id"
         :class="{ active: index === activeIndex }">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img :src="promotion.imageUrl" alt="..." style="width: 100%; height: 90%; padding: 10px">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{promotion.name}}</h5>
-        <p class="card-text">Thời gian bắt đầu: {{promotion.start}}</p>
-        <p class="card-text">Thời gian kết thúc: {{promotion.end}}</p>
-        <p class="card-text">Thể lệ: {{promotion.description}}</p>
-      </div>
-    </div>
-  </div>
+        <router-link :to="{name: 'promotiondetail', params: {id: promotion._id}}" style="text-decoration: none; color: black;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img :src="promotion.imageUrl" alt="..." style="width: 100%; height: 90%; padding: 10px">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{promotion.name}}</h5>
+                <p class="card-text">Thời gian bắt đầu: {{promotion.start}}</p>
+                <p class="card-text">Thời gian kết thúc: {{promotion.end}}</p>
+                <p class="card-text">Thể lệ: {{promotion.description}}</p>
+              </div>
+            </div>
+          </div>
+        </router-link>  
+
 </div>
 </template>

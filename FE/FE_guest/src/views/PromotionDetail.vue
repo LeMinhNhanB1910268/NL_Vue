@@ -1,73 +1,65 @@
 <script>
-    import PromotionList from "../components/PromotionList.vue";
-    import PromotionService from "../services/promotion.service"
+import PromotionService from '@/services/promotion.service'
 export default {
-    components: {
-        PromotionList
-    },
-    data() {
-        return {
-            promotions: [],
-            activeIndex: -1,
-            searchText: "",
-        };
-    },
-    watch: {
-        searchText() {
-            this.activeIndex = -1;
-        },
-    },
-    computed: {
-       promnotionStrings() {
-            return this.promotions.map((promnotion) => {
-                const { name } = promnotion;
-                return [ name ].join("");
-            });
-        },
-    // Trả về cácpromnotion có chứa thông tin cần tìm kiếm.
-        filteredPromotions() {
-            if (!this.searchText) return this.promotions;
-                return this.promotions.filter((_promotion, index) =>
-                    this.promotionStrings[index].includes(this.searchText)
-
-                );
-        },
-        activePromotion() {
-            if (this.activeIndex < 0) return null;
-            return this.filteredPromotions[this.activeIndex];
-        },
-        filteredPromotionsCount() {
-            return this.filteredPromotions.length;
-        },
-    },
-    methods: {
-        async retrievePromotions() {
-            try {
-                this.promotions = await PromotionService.getAll();
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        refreshList() {
-            this.retrievePromotions();
-            this.activeIndex = -1;
-        },
-    },
-    mounted() {
-        this.refreshList();
-    },
+  // name: 'productdetail',
+  props:{
+    id:{ type: String, required: true },
+  },
+  data () {
+    return {
+      promotion:{},
+      _id : localStorage.getItem('_id'),
+      admin : localStorage.getItem('admin'),
+    };
+  },
+  methods: {
+    async getbyid(id) {
+      this.promotion = await PromotionService.get(id)
+    }
+  },
+  updated() {
+    this.getbyid(this.id);
+  },
+  created() {
+    this.getbyid(this.id);
+  },
 }
 </script>
- 
+<style>
+  .title-name{
+    font-size: 40px;
+    font-weight: 550;
+    color: rebeccapurple
+  }
+  .content {
+    font-size: 25px;
+  }
+  .shopping {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+  }
+  .text-detail{
+    font-size: 18px;
+  }
+  .icon {
+    color: yellowgreen;
+  }
+</style>
 <template>
-    <div class="container" style="margin-top: 10px;">
-        <div class="row">
+    <div class="container">
+        <div class="row" v-if="promotion">
             <div class="col-sm-8">
-                <h1 style="text-align: center; font-size:30px;">Chương Trình Khuyến Mãi</h1> <br> <br>  
-                    <PromotionList>
-                    </PromotionList>
-
-
+                <h3 class="title-name"> {{promotion.name}}</h3>
+                <p class="text-detail">Khi khách hàng mua hàng trong thời gian khuyến mãi sẽ nhận được những ưu đãi vô cùng hấp dẫn từ phía cửa hàng. 
+                     Tham khảo chi tiết tại bài viết dưới đây!</p>
+                <img :src="promotion.imageUrl" alt="..." style="width: 100%; height: 50%; padding: 10px">
+                <p class="text-detail">Nhanh tay đặt cho mình những chiếc áo ưng ý để hòa cùng không khí bóng đá bùng nổ này.</p>
+                <p class="text-detail"><b>Nội dung khuyến mãi</b></p>
+                <p class="text-detail">Ưu đãi: {{promotion.discount}}</p>
+                <p class="text-detail">Thời gian bắt đầu: {{promotion.start}}</p>
+                <p class="text-detail">Thời gian kết thúc: {{promotion.end}}</p>
+                <p class="text-detail mb-4">Thể lệ: {{promotion.description}}</p>
             </div>
             <div class="col-sm-4">
                 <h4 style="font-weight: 700; font-family:'Times New Roman', Times, serif; font-size:20px;;">GIỚI THIỆU VỀ NN SPORT</h4> <br>
@@ -88,4 +80,3 @@ export default {
         </div>
     </div>
 </template>
-    

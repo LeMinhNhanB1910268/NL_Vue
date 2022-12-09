@@ -2,19 +2,10 @@
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
   export default {
-    // data(){
-    //   return {
-    //     name : localStorage.getItem('name'),
-    //     // render: 1
-    //   }
-    // },
     components: {
       AppHeader,
       AppFooter,
     },
-  //   beforeUpdate(){
-  //   this.$router.go(0)
-  // },
   props: {
     ten: { type: String, default: 1 },
   },

@@ -1,40 +1,21 @@
 <template>
     <div class="form shadow-lg">
         <h3 class="text-center mt-4">Thêm đơn hàng</h3>
-        <form @submit="AddOrder(proid)" class="form-item">
+        <form @submit.prevent="AddOrder(proid)" class="form-item">
             <div class="form-group" >
-                <!-- <div class="row mt-4">
-                    <label class="col-sm-2 col-form-label ">UID</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" disabled v-model="_id">
-                    </div>
-                </div> -->
-
                 <div class="row mt-4" v-if="admin === 'Admin'">
                     <label class="col-sm-2 col-form-label ">UID</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" v-model="userId">
                     </div>
                 </div>
-                <!-- <div class="row mt-4" v-if="admin === 'Admin'">
-                    <label class="col-sm-2 col-form-label ">Tên SP</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" v-model="productName">
-                    </div>
-                </div> -->
+
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label ">Tên SP</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control " disabled v-model="productName">
                     </div>
                 </div>
-
-                <!-- <div class="row mt-4" v-if="admin === 'Admin'">
-                    <label class="col-sm-2 col-form-label ">Giá</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"  v-model="productPrice">
-                    </div>
-                </div> -->
                 <div class="row mt-4">
                     <label class="col-sm-2 col-form-label ">Giá</label>
                     <div class="col-sm-10">
@@ -144,7 +125,7 @@ import ProductService from '../services/product.service';
                         productName: this.productName, 
                         productPrice: this.productPrice, 
                         size: this.cart.size,
-                        nunmber: this.cart.nunmber,
+                        number: this.cart.number,
                         namePlayer: this.cart.namePlayer,
                         sl: this.cart.sl,
                         description: this.cart.description,

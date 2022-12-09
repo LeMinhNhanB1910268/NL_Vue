@@ -41,8 +41,8 @@ const productController = {
     },
     updateProduct: async(req, res) => {
         try {
-            let link_image = req.file.filename;
-            req.body.imageUrl = link_image;
+            // let link_image = req.file.filename;
+            // req.body.imageUrl = link_image;
             const product = await Product.findById(req.params.id);
             await product.updateOne({$set : req.body});
             res.status(200).json("Updated succesfully!");

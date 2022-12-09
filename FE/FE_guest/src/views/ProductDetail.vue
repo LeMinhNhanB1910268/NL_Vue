@@ -9,6 +9,7 @@ export default {
     return {
       product:{},
       _id : localStorage.getItem('_id'),
+      admin : localStorage.getItem('admin'),
     };
   },
   methods: {
@@ -59,7 +60,8 @@ export default {
               <p class="content">Giá bán: {{product.price}}</p>
               <p class="content">Số lượng còn: {{product.amount}}</p>
               <!-- <router-link :to="{ name: 'AddOrder', params: {name: product.name}}"> -->
-                <a :href="('../CreateOrder/'+product.name+'/'+product.price+'/'+product.amount+'/'+product._id)">    <button type="button" class="btn btn-danger shopping">Đặt hàng</button></a>
+                <a :href="('../CreateOrder/'+product.name+'/'+product.price+'/'+product.amount+'/'+product._id)" v-if="admin===''">    <button type="button" class="btn btn-danger shopping">Đặt hàng</button></a>
+      <button type="button" class="btn btn-danger shopping" v-else>Đặt hàng</button>
               <!-- </router-link> -->
 
             </div>

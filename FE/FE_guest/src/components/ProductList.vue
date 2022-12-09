@@ -6,6 +6,7 @@
             return{
                 product:[],
                 _id : localStorage.getItem('_id'),
+                admin : localStorage.getItem('admin'),
             }   
         },
     props: {
@@ -62,8 +63,9 @@
                 <p class="card-text">Số lượng: {{ product.amount}}</p>
                 <router-link :to="{name: 'productdetail', params: {id: product._id}}">
                     <button class="show-detail text-white">Xem chi tiết sản phẩm</button>
-                </router-link>
-                <i class="fa-solid fa-cart-plus shopping-card" type="button" @click="AddtoCart(product._id)"></i>
+                </router-link>                
+                <i class="fa-solid fa-cart-plus shopping-card" type="button" @click="AddtoCart(product._id)" v-if="admin===''"></i>
+                <i class="fa-solid fa-cart-plus shopping-card" type="button" v-else></i>
             </div>
         </div>
     </div>

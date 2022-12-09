@@ -1,6 +1,15 @@
-
+<script>
+export default{
+  data(){
+      return {
+        admin : localStorage.getItem('admin'),
+  
+      }
+    },
+};
+</script>
 <template>
-  <div >
+  <div v-if="admin==='Admin'">
     <div class="row"  >
     <div class="col-3 link menu mt-4" >
       <ul class="list-group ">
@@ -41,25 +50,4 @@
 </style>
 
 
-<script>
-import { defineComponent, reactive, toRefs } from 'vue';
-import Statistical from './Statistical.vue'
-export default defineComponent({
-  components: {
-    Statistical,
-  },
-  setup() {
-    const state = reactive({
-      selectedKeys: [],
-      openKeys: [],
-    });
-    const handleClick = menuInfo => {
-      console.log('click ', menuInfo);
-    };
-    return {
-      ...toRefs(state),
-      handleClick,
-    };
-  },
-});
-</script>
+

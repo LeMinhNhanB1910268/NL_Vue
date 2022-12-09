@@ -27,7 +27,11 @@ export default{
                     state: "đã xữ lý"
                 })
             this.$router.go()
-        }
+        },
+        async DeleteUser(id) {
+            await UserService.delete(id);
+            this.users = await UserService.getAll();
+        },
     },
     computed: {
         contactStrings() {
@@ -84,11 +88,11 @@ export default{
                 <th scope="row"></th>
                 <td>{{contact.userId}}</td>
                 <td>{{contact.problem}}</td>
-
                 <td >{{contact.state}}</td>
                 <td >{{contact.description}}</td>
                 <td>
-                    <button type="button" class="btn btn-success ml-3" @click="Confirm(contact._id)">Đã xữ lý</button>
+                    <button type="button" class="btn btn-success ml-3" @click="Confirm(contact._id)">Đã xữ lý1111</button>
+                    <button type="button" class="btn btn-danger ml-3" @click="DeleteUser(user._id)"><i class="fa-solid fa-trash"></i></button>
                 </td>
             </tr>
         </tbody>

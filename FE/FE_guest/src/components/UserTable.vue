@@ -26,8 +26,8 @@ export default {
     computed: {
         userStrings() {
             return this.users.map((user) => {
-                const { username } = user;
-                return [username].join("");
+                const { username, id} = user;
+                return [username, id].join("");
             });
         },
         // Trả về các product có chứa thông tin cần tìm kiếm.

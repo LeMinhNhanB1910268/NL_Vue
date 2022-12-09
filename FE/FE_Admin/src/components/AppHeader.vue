@@ -43,7 +43,7 @@ export default {
     //         this.activeIndex = -1;
     //     }
     // },
-    // methods:{
+    methods:{
     //     sreach(){
     //         if(this.searchText != ""){
     //              this.a=1;
@@ -52,22 +52,22 @@ export default {
     //     refresh() {
     //         this.a = 0;
     //     },
-    //     async Logout(){
-    //     localStorage.clear();
-    //     // authService.logout()
-    //     this.$router.push({
-    //         name: 'home',
-    //     })
-    //     this.$router.go(0)
+        async Logout(){
+        localStorage.clear();
+        // authService.logout()
+        this.$router.push({
+            name: 'home',
+        })
+        this.$router.go(0)
 
     // },
     //     reload(){
 
-    //     }
+        }
 
 
 
-    // },
+    },
     // computed:{
     //     productStrings() {
     //         return this.products.map((product) => {
